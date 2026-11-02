@@ -5,6 +5,8 @@ on:
     paths:
       - "index.html"
       - "data/sources.json"
+      - "data/newspaper-index.json"
+      - "newspaper/**"
       - "scripts/build.py"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
