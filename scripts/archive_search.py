@@ -157,9 +157,9 @@ article[id],p[id^="brief-"]{scroll-margin-top:30px}
  .sakariya-site-nav a{flex:1 1 42%;text-align:center;padding:8px 6px;font-size:12px}}
 </style>""")
     annotated=annotated.replace("</head>",navcss+"</head>",1)
-    if not re.search(r'<nav\\b[^>]*class=["\\x27][^"\\x27]*sakariya-site-nav',annotated,re.I):
-        if re.search(r"</header\\s*>",annotated,re.I):
-            annotated=re.sub(r"</header\\s*>",lambda m:m.group(0)+crossnav,annotated,count=1,flags=re.I)
+    if not re.search(r'<nav\b[^>]*class=["\x27][^"\x27]*sakariya-site-nav',annotated,re.I):
+        if re.search(r"</header\s*>",annotated,re.I):
+            annotated=re.sub(r"</header\s*>",lambda m:m.group(0)+crossnav,annotated,count=1,flags=re.I)
         else:
             annotated=re.sub(r"<body([^>]*)>",lambda m:m.group(0)+crossnav,annotated,count=1,flags=re.I)
     return annotated,records
