@@ -58,3 +58,7 @@ out = dest / "newspaper" / "index.html"
 out.parent.mkdir(exist_ok=True)
 out.write_text(archive, encoding="utf-8")
 print(f"Published newspaper archive with {len(valid)} editions.")
+
+# Build tagged article archive and annotate edition pages with clickable topic tags.
+import subprocess, sys
+subprocess.run([sys.executable, str(root / "scripts/archive_search.py")], check=True)
