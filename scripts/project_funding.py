@@ -65,7 +65,7 @@ def shell(kind, title, desc, payload):
 <label>Commodity <select id="commodity"><option value="">All commodities</option></select></label>
 <label>'''+("Facility type" if kind=="projects" else "Funding status")+''' <select id="type"><option value="">All types</option></select></label>
 '''+('<label>Funder / financing agency<select id="funder"><option value="">All funders</option></select></label><label>From date<input id="date-from" type="date" aria-label="Funding announced from date"></label><label>To date<input id="date-to" type="date" aria-label="Funding announced through date"></label>' if kind=="funding" else '')+'''<button id="clear" type="button">Clear filters</button></section>
-<div class="meta"><h2>'''+("Projects and facilities" if kind=="projects" else "Funding and investment events")+'''</h2><span id="count" aria-live="polite"></span></div>
+<div class="meta"><h2>'''+("Projects and facilities" if kind=="projects" else "Funding and investment events")+'''</h2><span id="count" aria-live="polite"></span></div>'''+('<p class="intro">Sorted by the latest verified announcement date. Date filters are inclusive; records without an exact public announcement date remain listed after dated entries but do not appear within a date range.</p>' if kind=="funding" else '')+'''
 <div class="cards" id="results"></div><div class="empty" id="empty" hidden>No matching verified records. New records are added after confirming an authoritative public disclosure.</div>
 </main><footer class="footer">SAKARIYA MINES &amp; MINERALS · PUBLIC RESEARCH DIRECTORY · RESHAPING RESOURCES</footer>
 <script type="application/json" id="registry">'''+json.dumps(payload,ensure_ascii=False,separators=(",",":")).replace("<",r"\u003c")+'''</script>
@@ -91,7 +91,184 @@ if(funder)options(funder,list.map(x=>x.funder));
 q.value=params.get('q')||'';country.value=params.get('country')||'';commodity.value=params.get('commodity')||'';type.value=params.get('type')||'';if(funder)funder.value=params.get('funder')||'';if(from)from.value=params.get('from')||'';if(to)to.value=params.get('to')||'';
 const selected=params.get(mode==='projects'?'project':'funding');
 let projectFilter=params.get('project');
-function money(t){const symbol=t.currency==='USD'?'US$':t.currency==='AUD'?'A$':t.currency+' ';return symbol+(t.amount>=1e9?(t.amount/1e9).toLocaleString('en-US',{maximumFractionDigits:2})+'bn':t.amount>=1e6?(t.amount/1e6).toLocaleString('en-US',{maximumFractionDigits:2})+'m':t.amount.toLocaleString('en-US'));}
+function money(t){const symbols={USD:'USreturn symbol+(t.amount>=1e9?(t.amount/1e9).toLocaleString('en-US',{maximumFractionDigits:2})+'bn':t.amount>=1e6?(t.amount/1e6).toLocaleString('en-US',{maximumFractionDigits:2})+'m':t.amount.toLocaleString('en-US'));}
+function addTags(card,values){const row=E('div','tags');values.forEach(v=>{const b=E('button','tag',v);b.type='button';b.onclick=()=>{commodity.value=v;render();};row.append(b)});card.append(row);}
+function fundingRow(t){const div=E('div','ledger');div.append(E('div','figure',money(t)),E('h4','',t.funder),E('div','sub',t.instrument+' · '+t.status+(t.announced_date?' · '+t.announced_date:'')));
+ div.append(E('p','',t.context),E('p','note',t.disbursement_note));if(!t.announced_date)div.append(E('div','sub','Exact announcement date not verified'));div.append(link('Original financing source ↗',t.source_url));return div;}
+function drawProject(p){
+ const card=E('article','card');card.id='project-'+p.id;
+ card.append(E('h3','',p.name),E('div','sub',p.type+' · '+p.country+' · '+p.location),E('div','sub',p.company),E('span','status',p.stage),E('p','',p.summary));addTags(card,p.commodities);
+ card.append(E('div','sub','Verified: '+p.last_verified+' · '+p.status_as_of));
+ card.append(link('Project disclosure ↗',p.source_url));
+ const tx=funds.filter(x=>x.project_id===p.id).sort((a,b)=>(b.announced_date||'').localeCompare(a.announced_date||'')),details=E('details');details.open=selected===p.id;
+ details.append(E('summary','',tx.length+' funding event'+(tx.length===1?'':'s')+' (not cumulative cash received)'));
+ if(tx.length)tx.forEach(x=>details.append(fundingRow(x)));
+ else details.append(E('p','sub','No independently verified funding transaction recorded yet.'));
+ card.append(details);
+ const foot=E('p','sub');foot.append(link('Funding tracker for this project ↗','../funding/?project='+encodeURIComponent(p.id)));card.append(foot);
+ const notes=E('p','note',p.source_note||'');if(p.source_note)card.append(notes);
+ if(p.news_articles.length){const n=E('div','sub','Newspaper: ');p.news_articles.forEach(x=>{n.append(link(x.split('#')[0].replace('.html','')+' ↗','../newspaper/'+x),document.createTextNode(' '));});card.append(n);}
+ return card;
+}
+function drawFunding(t){
+ const p=projectFor(t),card=E('article','card');card.id='funding-'+t.id;
+ card.append(E('div','figure',money(t)),E('h3','',p.name),E('div','sub',p.country+' · '+p.commodities.join(', ')));
+ card.append(E('div','sub','Funder: '+t.funder+' · '+t.funder_country));
+ card.append(E('div','sub','Recipient: '+t.recipient),E('div','sub','Instrument: '+t.instrument+(t.announced_date?' · '+t.announced_date:'')));
+ card.append(E('span','status',t.status),E('p','',t.context),E('p','note',t.disbursement_note));if(!t.announced_date)card.append(E('div','sub','Exact announcement date not verified; excluded from dated searches'));
+ const links=E('p');links.append(link('Original disclosure ↗',t.source_url),document.createTextNode(' · '),link('Project profile ↗','../projects/?project='+encodeURIComponent(t.project_id)));card.append(links);
+ return card;
+}
+function render(){
+ const term=q.value.trim().toLowerCase(),c=country.value,m=commodity.value,t=type.value,fu=funder?funder.value:'';
+ const start=from?from.value:'',end=to?to.value:'';
+ const found=list.filter(x=>{const p=mode==='projects'?x:projectFor(x);const all=mode==='projects'?[p.name,p.company,p.location,p.country,p.stage,p.summary,...p.commodities]:[x.funder,x.funder_country,x.recipient,x.instrument,x.status,x.context,p.name,p.country,p.company,...p.commodities];
+ return (!c||p.country===c)&&(!m||p.commodities.includes(m))&&(!t||(mode==='projects'?p.type===t:x.status===t))&&(!term||all.join(' ').toLowerCase().includes(term))&&(!fu||x.funder===fu)&&!(mode==='funding'&&projectFilter&&x.project_id!==projectFilter)&&
+ (mode==='projects'||(!start||(x.announced_date&&x.announced_date>=start)))&&
+ (mode==='projects'||(!end||(x.announced_date&&x.announced_date<=end)));
+ });
+ found.sort((a,b)=>mode==='funding'?((b.announced_date||'').localeCompare(a.announced_date||'')||a.id.localeCompare(b.id)):(a.name||'').localeCompare(b.name||''));
+ results.replaceChildren();found.forEach(x=>results.append(mode==='projects'?drawProject(x):drawFunding(x)));
+ $('empty').hidden=found.length>0;$('count').textContent=found.length+' record'+(found.length===1?'':'s');
+ const v=new URLSearchParams();if(term)v.set('q',q.value);if(c)v.set('country',c);if(m)v.set('commodity',m);if(t)v.set('type',t);if(fu)v.set('funder',fu);if(start)v.set('from',start);if(end)v.set('to',end);if(projectFilter&&mode==='funding')v.set('project',projectFilter);
+ history.replaceState(null,'',location.pathname+(v.toString()?'?'+v:'')+location.hash);
+}
+q.addEventListener('input',render);[country,commodity,type,funder,from,to].filter(Boolean).forEach(n=>n.addEventListener('change',render));
+$('clear').onclick=()=>{q.value='';country.value='';commodity.value='';type.value='';if(funder)funder.value='';if(from)from.value='';if(to)to.value='';projectFilter=null;render();};render();
+const target=selected?$((mode==='projects'?'project-':'funding-')+selected):null;if(target)target.scrollIntoView();
+})();
+"""
+def main():
+    projects=load("projects.json","projects");funds=load("funding.json","transactions")
+    validate(projects,funds)
+    for kind in ("projects","funding"):
+        dst=OUT/kind;dst.mkdir(parents=True,exist_ok=True)
+        data={"projects":projects,"funding":funds}
+        (dst/"index.html").write_text(shell(kind,"Project & Plant Directory" if kind=="projects" else "Funding & Investment Directory",
+          "Global mine, processing and battery supply-chain projects" if kind=="projects" else "Government, institutional and private funding by project",data)+
+          JS.replace('MODE',"'"+kind+"'")+"</script></body></html>",encoding="utf-8")
+        (dst/"register.json").write_text(json.dumps({"schema_version":1,**data},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    print(f"Built {len(projects)} verified projects and {len(funds)} funding events with linked project IDs.")
+if __name__=="__main__":main()
+,CAD:'Creturn symbol+(t.amount>=1e9?(t.amount/1e9).toLocaleString('en-US',{maximumFractionDigits:2})+'bn':t.amount>=1e6?(t.amount/1e6).toLocaleString('en-US',{maximumFractionDigits:2})+'m':t.amount.toLocaleString('en-US'));}
+function addTags(card,values){const row=E('div','tags');values.forEach(v=>{const b=E('button','tag',v);b.type='button';b.onclick=()=>{commodity.value=v;render();};row.append(b)});card.append(row);}
+function fundingRow(t){const div=E('div','ledger');div.append(E('div','figure',money(t)),E('h4','',t.funder),E('div','sub',t.instrument+' · '+t.status+(t.announced_date?' · '+t.announced_date:'')));
+ div.append(E('p','',t.context),E('p','note',t.disbursement_note));div.append(link('Original financing source ↗',t.source_url));return div;}
+function drawProject(p){
+ const card=E('article','card');card.id='project-'+p.id;
+ card.append(E('h3','',p.name),E('div','sub',p.type+' · '+p.country+' · '+p.location),E('div','sub',p.company),E('span','status',p.stage),E('p','',p.summary));addTags(card,p.commodities);
+ card.append(E('div','sub','Verified: '+p.last_verified+' · '+p.status_as_of));
+ card.append(link('Project disclosure ↗',p.source_url));
+ const tx=funds.filter(x=>x.project_id===p.id),details=E('details');details.open=selected===p.id;
+ details.append(E('summary','',tx.length+' funding event'+(tx.length===1?'':'s')+' (not cumulative cash received)'));
+ if(tx.length)tx.forEach(x=>details.append(fundingRow(x)));
+ else details.append(E('p','sub','No independently verified funding transaction recorded yet.'));
+ card.append(details);
+ const foot=E('p','sub');foot.append(link('Funding tracker for this project ↗','../funding/?project='+encodeURIComponent(p.id)));card.append(foot);
+ const notes=E('p','note',p.source_note||'');if(p.source_note)card.append(notes);
+ if(p.news_articles.length){const n=E('div','sub','Newspaper: ');p.news_articles.forEach(x=>{n.append(link(x.split('#')[0].replace('.html','')+' ↗','../newspaper/'+x),document.createTextNode(' '));});card.append(n);}
+ return card;
+}
+function drawFunding(t){
+ const p=projectFor(t),card=E('article','card');card.id='funding-'+t.id;
+ card.append(E('div','figure',money(t)),E('h3','',p.name),E('div','sub',p.country+' · '+p.commodities.join(', ')));
+ card.append(E('div','sub','Funder: '+t.funder+' · '+t.funder_country));
+ card.append(E('div','sub','Recipient: '+t.recipient),E('div','sub','Instrument: '+t.instrument+(t.announced_date?' · '+t.announced_date:'')));
+ card.append(E('span','status',t.status),E('p','',t.context),E('p','note',t.disbursement_note));
+ const links=E('p');links.append(link('Original disclosure ↗',t.source_url),document.createTextNode(' · '),link('Project profile ↗','../projects/?project='+encodeURIComponent(t.project_id)));card.append(links);
+ return card;
+}
+function render(){
+ const term=q.value.trim().toLowerCase(),c=country.value,m=commodity.value,t=type.value,fu=funder?funder.value:'';
+ const start=from?from.value:'',end=to?to.value:'';
+ const found=list.filter(x=>{const p=mode==='projects'?x:projectFor(x);const all=mode==='projects'?[p.name,p.company,p.location,p.country,p.stage,p.summary,...p.commodities]:[x.funder,x.funder_country,x.recipient,x.instrument,x.status,x.context,p.name,p.country,p.company,...p.commodities];
+ return (!c||p.country===c)&&(!m||p.commodities.includes(m))&&(!t||(mode==='projects'?p.type===t:x.status===t))&&(!term||all.join(' ').toLowerCase().includes(term))&&(!fu||x.funder===fu)&&!(mode==='funding'&&projectFilter&&x.project_id!==projectFilter)&&
+ (mode==='projects'||(!start||(x.announced_date&&x.announced_date>=start)))&&
+ (mode==='projects'||(!end||(x.announced_date&&x.announced_date<=end)));
+ });
+ found.sort((a,b)=>mode==='funding'?((b.announced_date||'').localeCompare(a.announced_date||'')||a.id.localeCompare(b.id)):(a.name||'').localeCompare(b.name||''));
+ results.replaceChildren();found.forEach(x=>results.append(mode==='projects'?drawProject(x):drawFunding(x)));
+ $('empty').hidden=found.length>0;$('count').textContent=found.length+' record'+(found.length===1?'':'s');
+ const v=new URLSearchParams();if(term)v.set('q',q.value);if(c)v.set('country',c);if(m)v.set('commodity',m);if(t)v.set('type',t);if(fu)v.set('funder',fu);if(start)v.set('from',start);if(end)v.set('to',end);if(projectFilter&&mode==='funding')v.set('project',projectFilter);
+ history.replaceState(null,'',location.pathname+(v.toString()?'?'+v:'')+location.hash);
+}
+q.addEventListener('input',render);[country,commodity,type,funder,from,to].filter(Boolean).forEach(n=>n.addEventListener('change',render));
+$('clear').onclick=()=>{q.value='';country.value='';commodity.value='';type.value='';if(funder)funder.value='';if(from)from.value='';if(to)to.value='';projectFilter=null;render();};render();
+const target=selected?$((mode==='projects'?'project-':'funding-')+selected):null;if(target)target.scrollIntoView();
+})();
+"""
+def main():
+    projects=load("projects.json","projects");funds=load("funding.json","transactions")
+    validate(projects,funds)
+    for kind in ("projects","funding"):
+        dst=OUT/kind;dst.mkdir(parents=True,exist_ok=True)
+        data={"projects":projects,"funding":funds}
+        (dst/"index.html").write_text(shell(kind,"Project & Plant Directory" if kind=="projects" else "Funding & Investment Directory",
+          "Global mine, processing and battery supply-chain projects" if kind=="projects" else "Government, institutional and private funding by project",data)+
+          JS.replace('MODE',"'"+kind+"'")+"</script></body></html>",encoding="utf-8")
+        (dst/"register.json").write_text(json.dumps({"schema_version":1,**data},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    print(f"Built {len(projects)} verified projects and {len(funds)} funding events with linked project IDs.")
+if __name__=="__main__":main()
+,AUD:'Areturn symbol+(t.amount>=1e9?(t.amount/1e9).toLocaleString('en-US',{maximumFractionDigits:2})+'bn':t.amount>=1e6?(t.amount/1e6).toLocaleString('en-US',{maximumFractionDigits:2})+'m':t.amount.toLocaleString('en-US'));}
+function addTags(card,values){const row=E('div','tags');values.forEach(v=>{const b=E('button','tag',v);b.type='button';b.onclick=()=>{commodity.value=v;render();};row.append(b)});card.append(row);}
+function fundingRow(t){const div=E('div','ledger');div.append(E('div','figure',money(t)),E('h4','',t.funder),E('div','sub',t.instrument+' · '+t.status+(t.announced_date?' · '+t.announced_date:'')));
+ div.append(E('p','',t.context),E('p','note',t.disbursement_note));div.append(link('Original financing source ↗',t.source_url));return div;}
+function drawProject(p){
+ const card=E('article','card');card.id='project-'+p.id;
+ card.append(E('h3','',p.name),E('div','sub',p.type+' · '+p.country+' · '+p.location),E('div','sub',p.company),E('span','status',p.stage),E('p','',p.summary));addTags(card,p.commodities);
+ card.append(E('div','sub','Verified: '+p.last_verified+' · '+p.status_as_of));
+ card.append(link('Project disclosure ↗',p.source_url));
+ const tx=funds.filter(x=>x.project_id===p.id),details=E('details');details.open=selected===p.id;
+ details.append(E('summary','',tx.length+' funding event'+(tx.length===1?'':'s')+' (not cumulative cash received)'));
+ if(tx.length)tx.forEach(x=>details.append(fundingRow(x)));
+ else details.append(E('p','sub','No independently verified funding transaction recorded yet.'));
+ card.append(details);
+ const foot=E('p','sub');foot.append(link('Funding tracker for this project ↗','../funding/?project='+encodeURIComponent(p.id)));card.append(foot);
+ const notes=E('p','note',p.source_note||'');if(p.source_note)card.append(notes);
+ if(p.news_articles.length){const n=E('div','sub','Newspaper: ');p.news_articles.forEach(x=>{n.append(link(x.split('#')[0].replace('.html','')+' ↗','../newspaper/'+x),document.createTextNode(' '));});card.append(n);}
+ return card;
+}
+function drawFunding(t){
+ const p=projectFor(t),card=E('article','card');card.id='funding-'+t.id;
+ card.append(E('div','figure',money(t)),E('h3','',p.name),E('div','sub',p.country+' · '+p.commodities.join(', ')));
+ card.append(E('div','sub','Funder: '+t.funder+' · '+t.funder_country));
+ card.append(E('div','sub','Recipient: '+t.recipient),E('div','sub','Instrument: '+t.instrument+(t.announced_date?' · '+t.announced_date:'')));
+ card.append(E('span','status',t.status),E('p','',t.context),E('p','note',t.disbursement_note));
+ const links=E('p');links.append(link('Original disclosure ↗',t.source_url),document.createTextNode(' · '),link('Project profile ↗','../projects/?project='+encodeURIComponent(t.project_id)));card.append(links);
+ return card;
+}
+function render(){
+ const term=q.value.trim().toLowerCase(),c=country.value,m=commodity.value,t=type.value,fu=funder?funder.value:'';
+ const start=from?from.value:'',end=to?to.value:'';
+ const found=list.filter(x=>{const p=mode==='projects'?x:projectFor(x);const all=mode==='projects'?[p.name,p.company,p.location,p.country,p.stage,p.summary,...p.commodities]:[x.funder,x.funder_country,x.recipient,x.instrument,x.status,x.context,p.name,p.country,p.company,...p.commodities];
+ return (!c||p.country===c)&&(!m||p.commodities.includes(m))&&(!t||(mode==='projects'?p.type===t:x.status===t))&&(!term||all.join(' ').toLowerCase().includes(term))&&(!fu||x.funder===fu)&&!(mode==='funding'&&projectFilter&&x.project_id!==projectFilter)&&
+ (mode==='projects'||(!start||(x.announced_date&&x.announced_date>=start)))&&
+ (mode==='projects'||(!end||(x.announced_date&&x.announced_date<=end)));
+ });
+ found.sort((a,b)=>mode==='funding'?((b.announced_date||'').localeCompare(a.announced_date||'')||a.id.localeCompare(b.id)):(a.name||'').localeCompare(b.name||''));
+ results.replaceChildren();found.forEach(x=>results.append(mode==='projects'?drawProject(x):drawFunding(x)));
+ $('empty').hidden=found.length>0;$('count').textContent=found.length+' record'+(found.length===1?'':'s');
+ const v=new URLSearchParams();if(term)v.set('q',q.value);if(c)v.set('country',c);if(m)v.set('commodity',m);if(t)v.set('type',t);if(fu)v.set('funder',fu);if(start)v.set('from',start);if(end)v.set('to',end);if(projectFilter&&mode==='funding')v.set('project',projectFilter);
+ history.replaceState(null,'',location.pathname+(v.toString()?'?'+v:'')+location.hash);
+}
+q.addEventListener('input',render);[country,commodity,type,funder,from,to].filter(Boolean).forEach(n=>n.addEventListener('change',render));
+$('clear').onclick=()=>{q.value='';country.value='';commodity.value='';type.value='';if(funder)funder.value='';if(from)from.value='';if(to)to.value='';projectFilter=null;render();};render();
+const target=selected?$((mode==='projects'?'project-':'funding-')+selected):null;if(target)target.scrollIntoView();
+})();
+"""
+def main():
+    projects=load("projects.json","projects");funds=load("funding.json","transactions")
+    validate(projects,funds)
+    for kind in ("projects","funding"):
+        dst=OUT/kind;dst.mkdir(parents=True,exist_ok=True)
+        data={"projects":projects,"funding":funds}
+        (dst/"index.html").write_text(shell(kind,"Project & Plant Directory" if kind=="projects" else "Funding & Investment Directory",
+          "Global mine, processing and battery supply-chain projects" if kind=="projects" else "Government, institutional and private funding by project",data)+
+          JS.replace('MODE',"'"+kind+"'")+"</script></body></html>",encoding="utf-8")
+        (dst/"register.json").write_text(json.dumps({"schema_version":1,**data},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    print(f"Built {len(projects)} verified projects and {len(funds)} funding events with linked project IDs.")
+if __name__=="__main__":main()
+,EUR:'€',INR:'₹',GBP:'£'};const symbol=symbols[t.currency]||t.currency+' ';return symbol+(t.amount>=1e9?(t.amount/1e9).toLocaleString('en-US',{maximumFractionDigits:2})+'bn':t.amount>=1e6?(t.amount/1e6).toLocaleString('en-US',{maximumFractionDigits:2})+'m':t.amount.toLocaleString('en-US'));}
 function addTags(card,values){const row=E('div','tags');values.forEach(v=>{const b=E('button','tag',v);b.type='button';b.onclick=()=>{commodity.value=v;render();};row.append(b)});card.append(row);}
 function fundingRow(t){const div=E('div','ledger');div.append(E('div','figure',money(t)),E('h4','',t.funder),E('div','sub',t.instrument+' · '+t.status+(t.announced_date?' · '+t.announced_date:'')));
  div.append(E('p','',t.context),E('p','note',t.disbursement_note));div.append(link('Original financing source ↗',t.source_url));return div;}
