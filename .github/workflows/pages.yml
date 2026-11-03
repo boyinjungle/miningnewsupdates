@@ -7,10 +7,13 @@ on:
       - "data/sources.json"
       - "data/newspaper-index.json"
       - "data/people.json"
+      - "data/projects.json"
+      - "data/funding.json"
       - "newspaper/**"
       - "scripts/build.py"
       - "scripts/archive_search.py"
       - "scripts/people_directory.py"
+      - "scripts/project_funding.py"
       - "scripts/validate_publish.py"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
