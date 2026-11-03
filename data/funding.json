@@ -147,11 +147,11 @@
       "status": "Proposed / announced",
       "amount": 462000000,
       "currency": "CAD",
-      "announced_date": "2025-10-01",
+      "announced_date": null,
       "source_url": "https://publications.gc.ca/collections/collection_2026/fin/F1-21-2026-eng.pdf",
       "context": "Canadian 2026 economic update reported approximately C$462m debt financing announced October 2025; exact contract/disbursement status not established in this summary.",
       "disbursement_verified": false,
-      "disbursement_note": "A public announcement of support is not proof of cash disbursement or project completion.",
+      "disbursement_note": "A public announcement of support is not proof of cash disbursement or project completion. Announcement period is known only to month from the cited summary; excluded from strict date-range matches until exact date is verified.",
       "last_verified": "2026-11-03"
     },
     {
@@ -164,11 +164,11 @@
       "status": "Proposed / announced",
       "amount": 149000000,
       "currency": "CAD",
-      "announced_date": "2025-10-01",
+      "announced_date": null,
       "source_url": "https://publications.gc.ca/collections/collection_2026/fin/F1-21-2026-eng.pdf",
       "context": "Canadian 2026 economic update reported approximately C$149m equity financing announced October 2025.",
       "disbursement_verified": false,
-      "disbursement_note": "A public announcement of support is not proof of cash disbursement or project completion.",
+      "disbursement_note": "A public announcement of support is not proof of cash disbursement or project completion. Announcement period is known only to month from the cited summary; excluded from strict date-range matches until exact date is verified.",
       "last_verified": "2026-11-03"
     },
     {
@@ -181,11 +181,11 @@
       "status": "Proposed / announced",
       "amount": 25000000,
       "currency": "CAD",
-      "announced_date": "2025-10-01",
+      "announced_date": null,
       "source_url": "https://publications.gc.ca/collections/collection_2026/fin/F1-21-2026-eng.pdf",
       "context": "Federal 2026 economic update lists C$25m equity-like financial royalty structure.",
       "disbursement_verified": false,
-      "disbursement_note": "A public announcement of support is not proof of cash disbursement or project completion.",
+      "disbursement_note": "A public announcement of support is not proof of cash disbursement or project completion. Announcement period is known only to month from the cited summary; excluded from strict date-range matches until exact date is verified.",
       "last_verified": "2026-11-03"
     },
     {
@@ -198,11 +198,11 @@
       "status": "Proposed / announced",
       "amount": 14100000,
       "currency": "CAD",
-      "announced_date": "2025-10-01",
+      "announced_date": null,
       "source_url": "https://publications.gc.ca/collections/collection_2026/fin/F1-21-2026-eng.pdf",
       "context": "Federal update lists C$14.1m for graphite advanced manufacturing; specific executed agreement not established in summary.",
       "disbursement_verified": false,
-      "disbursement_note": "A public announcement of support is not proof of cash disbursement or project completion.",
+      "disbursement_note": "A public announcement of support is not proof of cash disbursement or project completion. Announcement period is known only to month from the cited summary; excluded from strict date-range matches until exact date is verified.",
       "last_verified": "2026-11-03"
     },
     {
@@ -215,11 +215,11 @@
       "status": "Proposed / announced",
       "amount": 2300000,
       "currency": "CAD",
-      "announced_date": "2026-03-01",
+      "announced_date": null,
       "source_url": "https://publications.gc.ca/collections/collection_2026/fin/F1-21-2026-eng.pdf",
       "context": "Federal 2026 economic update highlights C$2.3m support at PDAC in March 2026; exact publication day not given.",
       "disbursement_verified": false,
-      "disbursement_note": "A public announcement of support is not proof of cash disbursement or project completion.",
+      "disbursement_note": "A public announcement of support is not proof of cash disbursement or project completion. Announcement period is known only to month from the cited summary; excluded from strict date-range matches until exact date is verified.",
       "last_verified": "2026-11-03"
     },
     {
@@ -232,11 +232,11 @@
       "status": "Proposed / announced",
       "amount": 36500000,
       "currency": "CAD",
-      "announced_date": "2026-03-01",
+      "announced_date": null,
       "source_url": "https://publications.gc.ca/collections/collection_2026/fin/F1-21-2026-eng.pdf",
       "context": "Federal 2026 economic update highlights C$36.5m of support for Clearwater demonstration program during March 2026 PDAC.",
       "disbursement_verified": false,
-      "disbursement_note": "A public announcement of support is not proof of cash disbursement or project completion.",
+      "disbursement_note": "A public announcement of support is not proof of cash disbursement or project completion. Announcement period is known only to month from the cited summary; excluded from strict date-range matches until exact date is verified.",
       "last_verified": "2026-11-03"
     },
     {
@@ -249,11 +249,11 @@
       "status": "Proposed / announced",
       "amount": 34400000,
       "currency": "CAD",
-      "announced_date": "2026-03-01",
+      "announced_date": null,
       "source_url": "https://publications.gc.ca/collections/collection_2026/fin/F1-21-2026-eng.pdf",
       "context": "Federal 2026 update reports approximately C$34.4m of equity financing; actual shareholder and closing not identified in this high-level source.",
       "disbursement_verified": false,
-      "disbursement_note": "A public announcement of support is not proof of cash disbursement or project completion.",
+      "disbursement_note": "A public announcement of support is not proof of cash disbursement or project completion. Announcement period is known only to month from the cited summary; excluded from strict date-range matches until exact date is verified.",
       "last_verified": "2026-11-03"
     },
     {
@@ -266,11 +266,11 @@
       "status": "Proposed / announced",
       "amount": 9100000,
       "currency": "CAD",
-      "announced_date": "2026-03-01",
+      "announced_date": null,
       "source_url": "https://publications.gc.ca/collections/collection_2026/fin/F1-21-2026-eng.pdf",
       "context": "Additional C$9.1m funding listed separately by the Canadian government; avoid treating as identical to equity financing.",
       "disbursement_verified": false,
-      "disbursement_note": "A public announcement of support is not proof of cash disbursement or project completion.",
+      "disbursement_note": "A public announcement of support is not proof of cash disbursement or project completion. Announcement period is known only to month from the cited summary; excluded from strict date-range matches until exact date is verified.",
       "last_verified": "2026-11-03"
     },
     {
