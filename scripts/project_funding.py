@@ -52,7 +52,7 @@ details{border-top:1px solid var(--line);margin-top:12px;padding-top:10px}summar
 </style>"""
 def shell(kind, title, desc, payload):
     nav='''<nav class="links" aria-label="Sakariya research navigation">
-<a href="../">Source Directory</a><a href="../newspaper/">Newspaper</a><a href="../people/">People</a>
+<a href="../">Source Directory</a><a href="../newspaper/">Newspaper</a><a href="../people/">People</a><a href="../companies/">Companies</a>
 <a href="../projects/" class="PROJECTACTIVE">Projects &amp; Plants</a><a href="../funding/" class="FUNDINGACTIVE">Funding Tracker</a>
 <a href="https://www.sakariyamines.com/" target="_blank" rel="noopener noreferrer">Visit Sakariya ↗</a></nav>'''.replace('class="PROJECTACTIVE"','class="active"' if kind=="projects" else '').replace('class="FUNDINGACTIVE"','class="active"' if kind=="funding" else '')
     return ('''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="'''+html.escape(desc,quote=True)+'''"><title>'''+html.escape(title)+''' | Sakariya Mining Intelligence</title>'''+STYLE+'''</head><body>
