@@ -11,6 +11,7 @@ Never edit generated site output.
 | newspaper/YYYY-MM-DD.html | Full public-safe dated HTML edition, dated Asia/Kolkata |
 | data/newspaper-index.json | Newest-first metadata for every published edition |
 | data/sources.json | Public deduplicated directory records |
+| data/people.json | Verified public professional profiles and cross-linked newspaper mentions |
 | index.html | Source directory website template |
 | scripts/build.py | Source directory and newspaper build coordinator |
 | scripts/archive_search.py | Cross-date article search, tags, navigation and UI |
@@ -23,15 +24,18 @@ Never edit generated site output.
 3. Create or update the dated issue using the GitHub connector. Fetch its current SHA before updating an existing issue.
 4. Fetch and update data/newspaper-index.json; preserve all existing dates, add the current issue exactly once, and keep newest first. Use the current blob SHA for updates.
 5. Update data/sources.json only for actually verified public sources or corrected links; preserve its existing schema.
-6. Allow GitHub Actions to build and validate; check the exact workflow result and published deployment before claiming success.
-7. Keep authorized employee-only Sakariya research in the separately delivered internal edition. Never commit confidential notes, private deals, personal lead lists, licensed full text, credentials or restricted project data to this public repository, even temporarily.
-8. Report successes, failures, source gaps and failed delivery attempts accurately. Do not claim Gmail sending or GitHub syncing succeeded without tool confirmation.
+6. Maintain data/people.json for explicitly sourced named/quoted people, verified designation, organization, country and commodity, and linked article anchors. Do not infer identities or affiliations; preserve historic people records and deduplicate.
+
+7. Allow GitHub Actions to build and validate; check the exact workflow result and published deployment before claiming success.
+8. Keep authorized employee-only Sakariya research in the separately delivered internal edition. Never commit confidential notes, private deals, personal lead lists, licensed full text, credentials or restricted project data to this public repository, even temporarily.
+9. Report successes, failures, source gaps and failed delivery attempts accurately. Do not claim Gmail sending or GitHub syncing succeeded without tool confirmation.
 
 ## Generated outputs, not source files
 
 - Newspaper archive, full HTML editions with branded navigation, article tags, in-edition jump search and share actions.
 - newspaper/article-index.json: article metadata for cross-date topic/tag search.
 - newspaper/manifest.json: machine-readable versioned issue manifest.
+- people/index.html and people/people.json: searchable, filterable public professional directory with verifiable article links.
 - feed.xml: latest 100 public article summaries for RSS.
 - sitemap.xml and robots.txt: site discovery.
 - Homepage automatically links to newest indexed daily issue.
@@ -42,6 +46,7 @@ GitHub Pages workflow runs python3 scripts/build.py then python3 scripts/validat
 
 ## Identity and access
 
+People Directory: https://boyinjungle.github.io/miningnewsupdates/people/
 Corporate website: https://www.sakariyamines.com/
 Newspaper: https://boyinjungle.github.io/miningnewsupdates/newspaper/
 Directory: https://boyinjungle.github.io/miningnewsupdates/
