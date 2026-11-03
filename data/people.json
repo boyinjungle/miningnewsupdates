@@ -1,4 +1,27 @@
 {
   "schema_version": 1,
-  "people": []
+  "people": [
+    {
+      "id": "peter-grant-zaner-metals",
+      "name": "Peter Grant",
+      "designation": "Vice President and Senior Metals Strategist",
+      "company": "Zaner Metals",
+      "country": "United States",
+      "commodities": [
+        "Gold",
+        "Precious Metals"
+      ],
+      "last_verified": "2026-11-03",
+      "verification_url": "https://www.zanermetals.com/about.php",
+      "mentions": [
+        {
+          "date": "2026-11-03",
+          "article_url": "2026-11-03.html#story-1",
+          "source_url": "https://www.reuters.com/world/india/gold-rises-softer-oil-markets-parse-fed-signals-2026-11-02/",
+          "kind": "quoted",
+          "context": "Quoted by Reuters on the 2 November gold rebound, interest-rate expectations and the impact of softer oil prices."
+        }
+      ]
+    }
+  ]
 }
