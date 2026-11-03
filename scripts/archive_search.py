@@ -218,7 +218,14 @@ article[id],p[id^="brief-"]{scroll-margin-top:30px}
 .issue-jump button:focus-visible{outline:3px solid #C7551B;outline-offset:2px}
 @media(max-width:700px){.issue-jump{margin:12px;padding:13px}.issue-jump-results{grid-template-columns:1fr}
 .issue-jump-controls label{flex-basis:44%}.issue-jump-controls .issue-query-label{flex-basis:100%}}
-@media print{.issue-jump{display:none}}
+.back-to-tags{position:fixed;right:clamp(14px,3vw,30px);bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:1000;display:inline-flex;align-items:center;gap:8px;border:2px solid #fff;box-shadow:0 3px 15px #41200e40;background:#C7551B;color:#fff!important;border-radius:30px;padding:11px 16px;text-decoration:none!important;font:750 13px/1.3 'Proxima Nova',Arial,sans-serif;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .18s ease,transform .18s ease}
+.back-to-tags.is-visible{opacity:1;pointer-events:auto;transform:translateY(0)}
+.back-to-tags:hover,.back-to-tags:focus-visible{background:#41200E;color:#fff!important;outline:3px solid #C7551B;outline-offset:2px}
+.back-to-tags svg{width:18px;height:18px;flex-shrink:0}
+#jump-to-news{scroll-margin-top:12px}
+@media(max-width:540px){.back-to-tags{right:12px;bottom:calc(14px + env(safe-area-inset-bottom,0px));padding:10px 13px}}
+@media(prefers-reduced-motion:reduce){.back-to-tags{transition:none}}
+@media print{.issue-jump,.back-to-tags{display:none}}
 </style>"""
     jumpscript = """<script type="application/json" id="issue-story-data">""" + jump_json + """</script>
 <script>
@@ -252,7 +259,37 @@ filter();
         annotated=re.sub(r"<main\b[^>]*>",lambda m:m.group(0)+jump,annotated,count=1,flags=re.I)
     else:
         annotated=re.sub(r"</nav\s*>",lambda m:m.group(0)+jump,annotated,count=1,flags=re.I)
-    annotated=annotated.replace("</body>",jumpscript+"</body>",1)
+    # Fixed return-to-filters action appears after scrolling into the articles.
+    back_link = ('<a href="#jump-to-news" class="back-to-tags" id="back-to-tags" '
+                 'aria-label="Back to news topic and tag filters" title="Back to tag filters">'
+                 '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+                 'stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" '
+                 'aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>'
+                 '<span>Tag filters</span></a>')
+    back_script = """<script>
+(()=>{
+ const action=document.getElementById('back-to-tags');
+ const filters=document.getElementById('jump-to-news');
+ if(!action||!filters)return;
+ const refresh=()=>{
+   const box=filters.getBoundingClientRect();
+   const show=box.bottom<80;
+   action.classList.toggle('is-visible',show);
+   action.setAttribute('aria-hidden',String(!show));
+   action.tabIndex=show?0:-1;
+ };
+ window.addEventListener('scroll',refresh,{passive:true});
+ window.addEventListener('resize',refresh);
+ refresh();
+ action.addEventListener('click',event=>{
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  event.preventDefault();
+  filters.scrollIntoView({behavior:'smooth',block:'start'});
+  history.replaceState(null,'','#jump-to-news');
+ });
+})();
+</script>"""
+    annotated=annotated.replace("</body>",back_link+jumpscript+back_script+"</body>",1)
     return annotated,records
 
 def render_archive(records,issues):
