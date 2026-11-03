@@ -136,6 +136,32 @@ article[id],p[id^="brief-"]{scroll-margin-top:30px}
 
 </style>""")
     annotated=annotated.replace("</head>",css+"</head>",1)
+    # Cross-site navigation is assembled at build time so it appears in every
+    # historic and future edition without modifying the original news content.
+    crossnav = ('<nav class="sakariya-site-nav" aria-label="Sakariya websites">'
+                '<a href="../">Source Intelligence Directory</a>'
+                '<a href="./">Newspaper Archive</a>'
+                '<a href="index.html#topics">Browse Topics</a>'
+                '<a href="index.html#articles">Search All News</a>'
+                '</nav>')
+    navcss = ("""
+<style id="sakariya-site-nav-styles">
+.sakariya-site-nav{display:flex;align-items:center;flex-wrap:wrap;gap:9px;
+ padding:12px max(16px,calc((100vw - 1120px)/2));background:#F5F3F0;
+ border-bottom:1px solid #d7c7ba;font:600 13px/1.4 'Proxima Nova',Arial,sans-serif}
+.sakariya-site-nav a{display:inline-block;padding:8px 12px;background:#fff;color:#41200E;
+ border:1px solid #d7c7ba;border-radius:6px;text-decoration:none}
+.sakariya-site-nav a:hover,.sakariya-site-nav a:focus-visible{border-color:#C7551B;
+ background:#fff1e7;color:#72310f;outline-offset:2px}
+@media(max-width:580px){.sakariya-site-nav{padding:10px 12px;gap:6px}
+ .sakariya-site-nav a{flex:1 1 42%;text-align:center;padding:8px 6px;font-size:12px}}
+</style>""")
+    annotated=annotated.replace("</head>",navcss+"</head>",1)
+    if not re.search(r'<nav\\b[^>]*class=["\\x27][^"\\x27]*sakariya-site-nav',annotated,re.I):
+        if re.search(r"</header\\s*>",annotated,re.I):
+            annotated=re.sub(r"</header\\s*>",lambda m:m.group(0)+crossnav,annotated,count=1,flags=re.I)
+        else:
+            annotated=re.sub(r"<body([^>]*)>",lambda m:m.group(0)+crossnav,annotated,count=1,flags=re.I)
     return annotated,records
 
 def render_archive(records,issues):
