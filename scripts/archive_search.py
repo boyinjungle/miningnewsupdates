@@ -316,6 +316,129 @@ filter();
  });
 })();
 </script>"""
+    # Editorial brand bridge: visitors sharing public news can discover the
+    # company's official website, without confusing reported news with an ad.
+    brandcss = """
+<style id="sakariya-brand-bridge-style">
+:root{--brand-orange:#C7551B}
+.sakariya-brand-bridge{max-width:1120px;margin:14px auto 18px;padding:12px 18px;
+ background:#fffaf5;border:1px solid #ddc9bb;border-radius:8px;display:flex;
+ align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+ color:#41200E;font:14px/1.5 'Proxima Nova',Arial,sans-serif}
+.sakariya-brand-bridge .brand-name{display:block;font-weight:800;font-size:15px;color:#41200E}
+.sakariya-brand-bridge .brand-desc{font-size:12px;color:#735949}
+.sakariya-brand-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.sakariya-brand-actions a,.sakariya-brand-actions button{border:1px solid #C7551B;border-radius:6px;
+ padding:9px 12px;text-decoration:none;font:700 13px/1.35 'Proxima Nova',Arial,sans-serif;cursor:pointer}
+.sakariya-brand-actions a{background:#C7551B;color:#fff}
+.sakariya-brand-actions a:hover,.sakariya-brand-actions a:focus-visible{background:#41200E;border-color:#41200E;color:#fff}
+.sakariya-brand-actions button{background:#fff;color:#80350e}
+.sakariya-brand-actions button:hover,.sakariya-brand-actions button:focus-visible{background:#fff0e4}
+.sakariya-brand-actions :is(a,button):focus-visible{outline:3px solid #C7551B;outline-offset:2px}
+.sakariya-brand-outro{max-width:1120px;margin:28px auto 38px;border-left:4px solid #C7551B;
+ border-radius:8px;background:#fff;padding:20px 22px;box-shadow:0 1px 4px #41200e12;
+ color:#41200E;font:15px/1.6 'Proxima Nova',Arial,sans-serif}
+.sakariya-brand-outro h2{border:0!important;padding:0!important;margin:0 0 6px!important;
+ font:700 24px/1.2 Georgia,serif!important}
+.sakariya-brand-outro p{margin:6px 0 14px}
+.sakariya-brand-outro .brand-desc{font-size:13px;color:#685349}
+.sakariya-reading-progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:1050;
+ background:#C7551B;pointer-events:none}
+.sakariya-section-symbol{font:normal 20px/1 sans-serif;margin-right:9px;vertical-align:baseline}
+.sakariya-share-status{font-size:12px;min-height:1em;color:#41200E}
+@media(max-width:750px){.sakariya-brand-bridge{margin:12px;padding:12px}
+.sakariya-brand-outro{margin:22px 12px;padding:16px}.sakariya-brand-actions{width:100%}
+.sakariya-brand-actions a,.sakariya-brand-actions button{flex:1;text-align:center}}
+@media print{.sakariya-brand-bridge,.sakariya-reading-progress{display:none}}
+</style>"""
+    topbridge = ("""
+<aside class="sakariya-brand-bridge" aria-label="Explore Sakariya Mines and Minerals">
+<div><span class="brand-name">Explore Sakariya Mines &amp; Minerals</span>
+<span class="brand-desc">Gold, graphite and mineral exploration · Reshaping Resources</span></div>
+<div class="sakariya-brand-actions">
+<a href="https://www.sakariyamines.com/" target="_blank" rel="noopener noreferrer">Visit Sakariya ↗</a>
+<button type="button" class="sakariya-share-news" aria-label="Share this newspaper">↗ Share edition</button>
+</div></aside>""")
+    outro = ("""
+<aside class="sakariya-brand-outro" aria-label="About Sakariya">
+<div class="brand-desc">FROM THE PUBLISHER · SAKARIYA MINES &amp; MINERALS</div>
+<h2>Curious about the exploration work behind the news?</h2>
+<p>Explore Sakariya's gold and graphite projects, technical approach and partnership opportunities.</p>
+<div class="sakariya-brand-actions">
+<a href="https://www.sakariyamines.com/" target="_blank" rel="noopener noreferrer">Explore our projects ↗</a>
+<a href="https://www.sakariyamines.com/contact" target="_blank" rel="noopener noreferrer">Contact Sakariya ↗</a>
+<button type="button" class="sakariya-share-news">↗ Share this edition</button>
+</div><div class="sakariya-share-status" role="status" aria-live="polite"></div></aside>""")
+    # The archive builder operates on the published copy only, never the
+    # underlying editorial source saved to the repository.
+    annotated=annotated.replace("</head>",brandcss+"</head>",1)
+    if "</header>" in annotated:
+        annotated=annotated.replace("</header>","</header>"+topbridge,1)
+    if "</main>" in annotated:
+        annotated=annotated.replace("</main>",outro+"</main>",1)
+    else:
+        annotated=annotated.replace("</footer>",outro+"</footer>",1)
+    # Search engine and social share previews link to the source edition.
+    description=("Sakariya Mining & Graphite Daily | "+day+
+                 " — gold, graphite, critical minerals and global mining intelligence.")
+    share_meta=('<meta name="description" content="'+html.escape(description,quote=True)+'">'
+      '<meta property="og:type" content="article">'
+      '<meta property="og:title" content="Sakariya Mining &amp; Graphite Daily — '+day+'">'
+      '<meta property="og:description" content="'+html.escape(description,quote=True)+'">'
+      '<meta property="og:url" content="https://boyinjungle.github.io/miningnewsupdates/newspaper/'+day+'.html">'
+      '<meta name="twitter:card" content="summary">')
+    annotated=annotated.replace("</head>",share_meta+"</head>",1)
+    # Section symbols are deliberately small and limited to navigation headings.
+    # Do not add fabricated photos or visually dominate financial reporting.
+    icons={
+       "MAJOR NEWS UPDATES":"📰","WORLD":"🌐","INDIA":"🇮🇳",
+       "TANZANIA / EAST AFRICA":"🌍","Markets & technical watch":"📈",
+       "Business & investment intelligence":"🤝",
+       "Natural Graphite Social Pulse | Last 24 Hours":"💬",
+       "Critical Minerals Intelligence":"💎",
+       "GLOBAL MINING OPPORTUNITIES — AFRICA & OTHER CONTINENTS":"🧭",
+       "Today's actionable intelligence":"✓",
+       "Research & verification notes":"📋",
+       "WEEKLY DEEP DIVE":"🔎"}
+    def adorn_heading(m):
+        raw=m.group(2)
+        text_title=plain(raw)
+        symbol=icons.get(text_title)
+        if not symbol:return m.group(0)
+        return m.group(1)+'<span class="sakariya-section-symbol" aria-hidden="true">'+symbol+'</span>'+raw+m.group(3)
+    annotated=re.sub(r'(<h2\b[^>]*>)(.*?)(</h2>)',adorn_heading,annotated,flags=re.I|re.S)
+    interactions = """<div class="sakariya-reading-progress" id="sakariya-reading-progress" aria-hidden="true"></div>
+<script>
+(()=>{
+ const bar=document.getElementById('sakariya-reading-progress');
+ const update=()=>{
+  if(!bar)return;
+  const height=document.documentElement.scrollHeight-window.innerHeight;
+  const pct=height>0?Math.max(0,Math.min(100,window.scrollY/height*100)):0;
+  bar.style.width=pct+'%';
+ };
+ window.addEventListener('scroll',update,{passive:true});
+ window.addEventListener('resize',update);
+ update();
+ document.querySelectorAll('.sakariya-share-news').forEach(button=>{
+  button.addEventListener('click',async()=>{
+   const url=location.href.split('#')[0];
+   const title=document.title;
+   try{
+    if(navigator.share){await navigator.share({title,url});return;}
+    if(navigator.clipboard&&window.isSecureContext){
+      await navigator.clipboard.writeText(url);
+      button.textContent='✓ Link copied';
+      setTimeout(()=>button.textContent='↗ Share edition',2500);
+      return;
+    }
+    window.prompt('Copy the newspaper link:',url);
+   }catch(error){if(error.name!=='AbortError')window.prompt('Copy the newspaper link:',url);}
+  });
+ });
+})();
+</script>"""
+    annotated=annotated.replace("</body>",interactions+"</body>",1)
     annotated=annotated.replace("</body>",back_link+jumpscript+back_script+"</body>",1)
     return annotated,records
 
