@@ -451,6 +451,147 @@
       "status_as_of": "10th PSC meeting 29 June 2026",
       "source_note": "Project cost estimate is not evidence of a loan, grant paid, or cash disbursement. Verify full block name from source PDF before project-level due diligence.",
       "news_articles": []
+    },
+    {
+      "id": "balama-graphite",
+      "name": "Balama Graphite Operation",
+      "type": "Graphite mine and concentration operation",
+      "country": "Mozambique",
+      "region": "Southern Africa",
+      "location": "Cabo Delgado, Mozambique",
+      "company": "Twigg Exploration and Mining Limitada / Syrah Resources",
+      "commodities": [
+        "Natural Graphite",
+        "Vanadium"
+      ],
+      "stage": "Operating mine / capital support",
+      "summary": "Balama is Syrah's Mozambique graphite operation. Publicly disclosed U.S. DFC loan financing supports operational and expansion needs.",
+      "source_url": "https://www.syrahresources.com.au/news/syrah-receives-us-150m-dfc-loan-for-balama",
+      "status_as_of": "Corporate loan announcement; subsequent loan restructuring must be verified",
+      "source_note": "A 2026 DFC announcement proposed converting part of the facility into equity; funding terms may have evolved.",
+      "last_verified": "2026-11-03",
+      "news_articles": []
+    },
+    {
+      "id": "ecograf-tanzania-graphite",
+      "name": "EcoGraf Tanzania Natural Graphite Development",
+      "type": "Graphite mining and processing development",
+      "country": "Tanzania",
+      "region": "East Africa",
+      "location": "Tanzania (specific asset requires follow-up)",
+      "company": "EcoGraf Limited",
+      "commodities": [
+        "Natural Graphite",
+        "Battery Anode"
+      ],
+      "stage": "Feasibility / EIB advisory",
+      "summary": "EcoGraf graphite development connected to planned battery-grade processing and EIB technical assistance toward investment readiness.",
+      "source_url": "https://www.eib.org/en/press/all/2026-050-eib-global-backs-sustainable-critical-raw-material-projects-in-africa",
+      "status_as_of": "2026-02-11 announcement",
+      "source_note": "Project-specific site and definitive financing have not been independently confirmed from this summary.",
+      "last_verified": "2026-11-03",
+      "news_articles": []
+    },
+    {
+      "id": "andrada-namibia-lithium",
+      "name": "Andrada Namibia Lithium Expansion",
+      "type": "Lithium processing and mineral development",
+      "country": "Namibia",
+      "region": "Southern Africa",
+      "location": "Namibia (existing Andrada operating area)",
+      "company": "Andrada Mining Limited",
+      "commodities": [
+        "Lithium",
+        "Tin"
+      ],
+      "stage": "Feasibility / EIB advisory",
+      "summary": "Namibia lithium expansion and mineral processing evaluation supported by EIB Global early-stage technical assistance.",
+      "source_url": "https://www.eib.org/en/press/all/2026-050-eib-global-backs-sustainable-critical-raw-material-projects-in-africa",
+      "status_as_of": "2026-02-11 announcement",
+      "source_note": "Technical assistance is not construction finance; specific plant locations and project state require further verification.",
+      "last_verified": "2026-11-03",
+      "news_articles": []
+    },
+    {
+      "id": "lobito-zambia-corridor",
+      "name": "Lobito Integrated Economic Corridor — Zambia Component",
+      "type": "Mining-enabling transport and logistics infrastructure",
+      "country": "Zambia",
+      "region": "Southern Africa",
+      "location": "Zambia Copperbelt / Lobito Corridor",
+      "company": "Government of Zambia / Lobito Corridor partners",
+      "commodities": [
+        "Copper",
+        "Critical Minerals"
+      ],
+      "stage": "Regional infrastructure / AfDB board approval",
+      "summary": "Cross-border corridor linking the Zambia Copperbelt with DRC and Angola through transport and trade infrastructure; AfDB approved loan and grant support in August 2026.",
+      "source_url": "https://www.afdb.org/en/news-and-events/zambia-african-development-bank-group-approves-255m-loan-and-10m-grant-advance-lobito-economic-corridor-96069",
+      "status_as_of": "2026-08-06 approval",
+      "source_note": "Corridor financing is not a copper mine funding transaction.",
+      "last_verified": "2026-11-03",
+      "news_articles": []
+    },
+    {
+      "id": "idc-south-africa-crm-facility",
+      "name": "IDC Critical Raw Materials Financing Facility",
+      "type": "Mining and processing financing facility",
+      "country": "South Africa",
+      "region": "Southern Africa",
+      "location": "South Africa (multi-project facility)",
+      "company": "Industrial Development Corporation of South Africa",
+      "commodities": [
+        "Critical Minerals"
+      ],
+      "stage": "Board approved / financing framework under negotiation",
+      "summary": "EIB board-approved proposed critical-raw-materials financing facility for IDC on-lending to extraction, processing, recycling and related enabling infrastructure.",
+      "source_url": "https://www.eib.org/en/projects/all/20260095",
+      "status_as_of": "EIB approved 23 September 2026",
+      "source_note": "Facility is proposed/approved EIB finance, NOT a signed loan or project-specific disbursement.",
+      "last_verified": "2026-11-03",
+      "news_articles": []
+    },
+    {
+      "id": "aurubis-europe-copper",
+      "name": "Aurubis Europe Copper Refining and Recycling Investments",
+      "type": "Copper refining and recycling investment programme",
+      "country": "Germany",
+      "region": "Europe",
+      "location": "Hamburg (Germany) and Bulgaria (two-site programme)",
+      "company": "Aurubis AG",
+      "commodities": [
+        "Copper",
+        "Recycling"
+      ],
+      "stage": "Signed corporate investment financing",
+      "summary": "A €200m EIB loan supports copper refining expansion in Bulgaria and recycling/environmental upgrades in Hamburg under one corporate facility.",
+      "source_url": "https://www.eib.org/en/press/all/2025-333-aurubis-secures-eur-200-million-from-eib-to-drive-recycling-and-copper-production",
+      "status_as_of": "2025-09-11 loan signing",
+      "source_note": "Financing is at two-site corporate programme level; do not assign €200m independently to either plant.",
+      "last_verified": "2026-11-03",
+      "news_articles": []
+    },
+    {
+      "id": "pbt-hagen-pcam",
+      "name": "Pure Battery Technologies pCAM Demonstration Plant",
+      "type": "Precursor cathode active material plant",
+      "country": "Germany",
+      "region": "Europe",
+      "location": "Hagen, Germany",
+      "company": "Königswarter & Ebell / Pure Battery Technologies",
+      "commodities": [
+        "Nickel",
+        "Manganese",
+        "Cobalt",
+        "Battery Cathode"
+      ],
+      "stage": "Demonstration plant / EIB supported",
+      "summary": "Battery cathode precursor production technology using primary and recycled feedstocks, supported by an EIB loan.",
+      "source_url": "https://www.eib.org/en/press/all/2022-516-investeu-eib-invests-in-pbt-s-eco-friendly-battery-material-production-in-germany",
+      "status_as_of": "2022 financing agreement",
+      "source_note": "No current plant operation or repayment conclusion implied.",
+      "last_verified": "2026-11-03",
+      "news_articles": []
     }
   ]
 }
