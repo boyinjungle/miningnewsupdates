@@ -22,6 +22,7 @@ TOPICS = [
     ("india", "India Mining & Industry", "▦", "India exploration and critical minerals"),
     ("competitors", "Projects & Competitors", "◉", "Junior miners and project milestones"),
     ("opportunities", "Deals & Geo Services", "↗", "Partnerships, tenders and contracts"),
+    ("global-opportunities", "Global Mining Opportunities", "🌐", "Africa beyond Tanzania and opportunities worldwide"),
     ("social", "Natural Graphite Social Pulse", "◌", "LinkedIn, X, Reddit and forums"),
     ("events", "Conferences & Events", "▣", "Industry events and deadlines"),
 ]
@@ -38,6 +39,7 @@ PATTERNS = {
   "india": r"\bindia\b|\bindian\b|\bchhattisgarh\b|\bNMET\b|\bGSI\b|\bdeccan\b",
   "competitors": r"\bcompetitor\b|\bjunior\b|\bproject\b|\boperator\b|\bdevelop|\bmilestone\b|\bplant\b|\bconstruction\b|\bcommission",
   "opportunities": r"\btender\b|\bprocure|\bcontract\b|\bpartner|\bfarm-in\b|\bservices\b|\bsurvey\b|\bdeal\b",
+  "global-opportunities": r"\bglobal mining opportunit|\bmineral asset sale\b|\bfarm-in opportunit|\bprospecting licence auction\b|\bmineral block auction\b|\bexploration tender\b|\binternational mining tender\b",
   "social": r"\bsocial pulse\b|\blinkedin\b|\breddit\b|\bforum\b|\bposted\b|\bsocial discussion\b",
   "events": r"\bconference\b|\bexhibition\b|\bevent\b|\bregister|\bexhibitor\b|\bdeadline\b|\bTMIC\b",
 }
