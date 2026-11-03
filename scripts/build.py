@@ -96,3 +96,5 @@ subprocess.run([sys.executable, str(root / "scripts/archive_search.py")], check=
 subprocess.run([sys.executable, str(root / "scripts/people_directory.py")], check=True)
 # Build publicly sourced project and funding directories as linked research views.
 subprocess.run([sys.executable, str(root / "scripts/project_funding.py")], check=True)
+# Public company profiles link to already-built project, funding, people and news records.
+subprocess.run([sys.executable, str(root / "scripts/company_directory.py")], check=True)
