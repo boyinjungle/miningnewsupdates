@@ -143,7 +143,7 @@ footer{padding:20px;text-align:center;background:#020100;color:#fff;font-size:12
 </style></head><body>
 <header><div class="wrap"><div class="eyebrow">SAKARIYA MINES &amp; MINERALS · RESHAPING RESOURCES</div><h1>People Directory</h1><p>Public voices in mining, exploration, minerals and investment</p></div></header>
 <main class="wrap-main">
-<nav aria-label="Sakariya research navigation"><a href="../">Source Directory</a><a href="../newspaper/">Newspaper Archive</a><a href="../newspaper/#topics">Browse News Topics</a><a href="https://www.sakariyamines.com/" target="_blank" rel="noopener noreferrer">Visit Sakariya ↗</a></nav>
+<nav aria-label="Sakariya research navigation"><a href="../">Source Directory</a><a href="../newspaper/">Newspaper Archive</a><a href="../projects/">Projects &amp; Plants</a><a href="../funding/">Funding Directory</a><a href="../newspaper/#topics">Browse News Topics</a><a href="https://www.sakariyamines.com/" target="_blank" rel="noopener noreferrer">Visit Sakariya ↗</a></nav>
 <p class="summary">A verified directory of people quoted or named in our news coverage, with their organization, designation, mineral interests and dated source-linked article mentions. Positions are shown as verified at the cited date—not guaranteed current.</p>
 <div class="filters" role="search"><label>Search people and articles<input id="search" type="search" placeholder="Name, company, project, designation…"></label>
 <label>Country<select id="country"><option value="">All countries</option></select></label>
