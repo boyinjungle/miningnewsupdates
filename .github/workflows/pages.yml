@@ -8,6 +8,7 @@ on:
       - "data/newspaper-index.json"
       - "newspaper/**"
       - "scripts/build.py"
+      - "scripts/archive_search.py"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 permissions:
