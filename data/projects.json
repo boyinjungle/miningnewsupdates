@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "projects": [
+    {
+      "id": "syrah-vidalia",
+      "name": "Syrah Vidalia Active Anode Material Facility",
+      "type": "Battery anode processing plant",
+      "country": "United States",
+      "region": "North America",
+      "location": "Vidalia, Louisiana",
+      "company": "Syrah Technologies LLC / Syrah Resources",
+      "commodities": [
+        "Natural Graphite",
+        "Battery Anode"
+      ],
+      "stage": "Processing facility / expansion",
+      "summary": "Graphite active-anode-material facility with publicly documented U.S. Department of Energy financing for expansion. Production and capacity should be independently reverified as of each reporting date.",
+      "source_url": "https://www.energy.gov/articles/doe-announces-first-advanced-technology-vehicles-manufacturing-loan-more-decade",
+      "last_verified": "2026-11-03",
+      "status_as_of": "2022-07-27",
+      "source_note": "DOE 27 July 2022 loan closing announcement; not a current operating-status confirmation.",
+      "news_articles": []
+    },
+    {
+      "id": "lindi-jumbo",
+      "name": "Lindi Jumbo Graphite Project",
+      "type": "Graphite mine and concentrator",
+      "country": "Tanzania",
+      "region": "East Africa",
+      "location": "Lindi Region, Tanzania",
+      "company": "Lindi Jumbo / Walkabout Resources (historical project disclosures)",
+      "commodities": [
+        "Natural Graphite"
+      ],
+      "stage": "Mining project",
+      "summary": "Graphite project in south-eastern Tanzania near Mtwara with publicly reported mineral resources and reserves. The linked project website provides historical project statistics; current ownership and operating status require refreshed filings.",
+      "source_url": "https://lindijumbo.co.tz/lindi-jumbo-graphite-project/",
+      "last_verified": "2026-11-03",
+      "status_as_of": "Historical company page; current status unverified",
+      "source_note": "Do not confuse Lindi Jumbo with Sakariya's Tanga graphite project.",
+      "news_articles": [
+        "2026-11-03.html#brief-5"
+      ]
+    },
+    {
+      "id": "ardea-kalgoorlie-nickel",
+      "name": "Kalgoorlie Nickel Project / Goongarrie Hub",
+      "type": "Nickel-cobalt mining and processing project",
+      "country": "Australia",
+      "region": "Oceania",
+      "location": "Western Australia",
+      "company": "Ardea Resources Limited",
+      "commodities": [
+        "Nickel",
+        "Cobalt"
+      ],
+      "stage": "Development / proposed",
+      "summary": "Proposed nickel-cobalt mining and processing development. Australia and United States export financing institutions have issued non-binding letters of support or interest, not confirmed project loans.",
+      "source_url": "https://www.minister.industry.gov.au/king/media/australia-us-critical-minerals-framework-investing-additional-projects",
+      "last_verified": "2026-11-03",
+      "status_as_of": "2026 announcement",
+      "source_note": "Major Project Status does not itself confirm funding or operating production.",
+      "news_articles": []
+    }
+  ]
+}
