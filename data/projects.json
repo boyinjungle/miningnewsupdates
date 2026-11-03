@@ -296,6 +296,161 @@
       "status_as_of": "2026-06-24",
       "source_note": "Historical public disclosure. Do not infer current construction progress or funding disbursement.",
       "news_articles": []
+    },
+    {
+      "id": "nmet-ka-v-sc-2026",
+      "name": "G3 Vanadium–Scandium Exploration — Karnataka (10th PSC)",
+      "type": "Government-supported mineral exploration",
+      "country": "India",
+      "region": "South Asia",
+      "location": "Karnataka",
+      "company": "Geo Marine Solutions Private Ltd.",
+      "commodities": [
+        "Vanadium",
+        "Scandium"
+      ],
+      "stage": "Exploration / G3 or G4, in progress as listed",
+      "summary": "Public National Mineral Exploration Trust project record; implementing agency and government project cost estimate are listed. The abbreviated display name summarizes the commodity, state, proponent and committee rather than reproducing the full project block title.",
+      "source_url": "https://nmet.gov.in/content/project-report.php",
+      "last_verified": "2026-11-03",
+      "status_as_of": "10th PSC meeting 29 June 2026",
+      "source_note": "Project cost estimate is not evidence of a loan, grant paid, or cash disbursement. Verify full block name from source PDF before project-level due diligence.",
+      "news_articles": []
+    },
+    {
+      "id": "nmet-mp-graphite-vardan-2026",
+      "name": "G3 Graphite Exploration — Madhya Pradesh (Vardan, 10th PSC)",
+      "type": "Government-supported mineral exploration",
+      "country": "India",
+      "region": "South Asia",
+      "location": "Madhya Pradesh",
+      "company": "Vardan Environet LLP",
+      "commodities": [
+        "Graphite"
+      ],
+      "stage": "Exploration / G3 or G4, in progress as listed",
+      "summary": "Public National Mineral Exploration Trust project record; implementing agency and government project cost estimate are listed. The abbreviated display name summarizes the commodity, state, proponent and committee rather than reproducing the full project block title.",
+      "source_url": "https://nmet.gov.in/content/project-report.php",
+      "last_verified": "2026-11-03",
+      "status_as_of": "10th PSC meeting 29 June 2026",
+      "source_note": "Project cost estimate is not evidence of a loan, grant paid, or cash disbursement. Verify full block name from source PDF before project-level due diligence.",
+      "news_articles": []
+    },
+    {
+      "id": "nmet-mp-graphite-mmpl-2026",
+      "name": "G3 Graphite Exploration — Madhya Pradesh (MMPL, 10th PSC)",
+      "type": "Government-supported mineral exploration",
+      "country": "India",
+      "region": "South Asia",
+      "location": "Madhya Pradesh",
+      "company": "M/s MMPL Pvt Ltd",
+      "commodities": [
+        "Graphite"
+      ],
+      "stage": "Exploration / G3 or G4, in progress as listed",
+      "summary": "Public National Mineral Exploration Trust project record; implementing agency and government project cost estimate are listed. The abbreviated display name summarizes the commodity, state, proponent and committee rather than reproducing the full project block title.",
+      "source_url": "https://nmet.gov.in/content/project-report.php",
+      "last_verified": "2026-11-03",
+      "status_as_of": "10th PSC meeting 29 June 2026",
+      "source_note": "Project cost estimate is not evidence of a loan, grant paid, or cash disbursement. Verify full block name from source PDF before project-level due diligence.",
+      "news_articles": []
+    },
+    {
+      "id": "nmet-od-ree-myworld-2026",
+      "name": "G4 REE Reconnaissance — Odisha (10th PSC)",
+      "type": "Government-supported mineral exploration",
+      "country": "India",
+      "region": "South Asia",
+      "location": "Odisha",
+      "company": "My World Consultancy Services Pvt. Ltd.",
+      "commodities": [
+        "Rare Earths"
+      ],
+      "stage": "Exploration / G3 or G4, in progress as listed",
+      "summary": "Public National Mineral Exploration Trust project record; implementing agency and government project cost estimate are listed. The abbreviated display name summarizes the commodity, state, proponent and committee rather than reproducing the full project block title.",
+      "source_url": "https://nmet.gov.in/content/project-report.php",
+      "last_verified": "2026-11-03",
+      "status_as_of": "10th PSC meeting 29 June 2026",
+      "source_note": "Project cost estimate is not evidence of a loan, grant paid, or cash disbursement. Verify full block name from source PDF before project-level due diligence.",
+      "news_articles": []
+    },
+    {
+      "id": "nmet-uk-graphite-vanadium-ocean-2026",
+      "name": "G4 Graphite–Vanadium Reconnaissance — Uttarakhand (10th PSC)",
+      "type": "Government-supported mineral exploration",
+      "country": "India",
+      "region": "South Asia",
+      "location": "Uttarakhand",
+      "company": "Ocean Drilling and Exploration Private Limited",
+      "commodities": [
+        "Graphite",
+        "Vanadium"
+      ],
+      "stage": "Exploration / G3 or G4, in progress as listed",
+      "summary": "Public National Mineral Exploration Trust project record; implementing agency and government project cost estimate are listed. The abbreviated display name summarizes the commodity, state, proponent and committee rather than reproducing the full project block title.",
+      "source_url": "https://nmet.gov.in/content/project-report.php",
+      "last_verified": "2026-11-03",
+      "status_as_of": "10th PSC meeting 29 June 2026",
+      "source_note": "Project cost estimate is not evidence of a loan, grant paid, or cash disbursement. Verify full block name from source PDF before project-level due diligence.",
+      "news_articles": []
+    },
+    {
+      "id": "nmet-cg-lithium-gsi-2026",
+      "name": "G3 Lithium Exploration — Chhattisgarh (10th PSC)",
+      "type": "Government-supported mineral exploration",
+      "country": "India",
+      "region": "South Asia",
+      "location": "Chhattisgarh",
+      "company": "Geological Survey of India, Central Region",
+      "commodities": [
+        "Lithium"
+      ],
+      "stage": "Exploration / G3 or G4, in progress as listed",
+      "summary": "Public National Mineral Exploration Trust project record; implementing agency and government project cost estimate are listed. The abbreviated display name summarizes the commodity, state, proponent and committee rather than reproducing the full project block title.",
+      "source_url": "https://nmet.gov.in/content/project-report.php",
+      "last_verified": "2026-11-03",
+      "status_as_of": "10th PSC meeting 29 June 2026",
+      "source_note": "Project cost estimate is not evidence of a loan, grant paid, or cash disbursement. Verify full block name from source PDF before project-level due diligence.",
+      "news_articles": []
+    },
+    {
+      "id": "nmet-od-graphite-earthenviro-2026",
+      "name": "G3 Graphite Exploration — Odisha (Eartnenviro, 10th PSC)",
+      "type": "Government-supported mineral exploration",
+      "country": "India",
+      "region": "South Asia",
+      "location": "Odisha",
+      "company": "M/s Eartnenviro Lab Pvt. Ltd.",
+      "commodities": [
+        "Graphite"
+      ],
+      "stage": "Exploration / G3 or G4, in progress as listed",
+      "summary": "Public National Mineral Exploration Trust project record; implementing agency and government project cost estimate are listed. The abbreviated display name summarizes the commodity, state, proponent and committee rather than reproducing the full project block title.",
+      "source_url": "https://nmet.gov.in/content/project-report.php",
+      "last_verified": "2026-11-03",
+      "status_as_of": "10th PSC meeting 29 June 2026",
+      "source_note": "Project cost estimate is not evidence of a loan, grant paid, or cash disbursement. Verify full block name from source PDF before project-level due diligence.",
+      "news_articles": []
+    },
+    {
+      "id": "nmet-mp-bauxite-prb-2026",
+      "name": "G3 Aluminous Laterite/Bauxite Exploration — Madhya Pradesh (PRB, 10th PSC)",
+      "type": "Government-supported mineral exploration",
+      "country": "India",
+      "region": "South Asia",
+      "location": "Madhya Pradesh",
+      "company": "PRB Infra Pvt Ltd",
+      "commodities": [
+        "Bauxite",
+        "Critical Minerals"
+      ],
+      "stage": "Exploration / G3 or G4, in progress as listed",
+      "summary": "Public National Mineral Exploration Trust project record; implementing agency and government project cost estimate are listed. The abbreviated display name summarizes the commodity, state, proponent and committee rather than reproducing the full project block title.",
+      "source_url": "https://nmet.gov.in/content/project-report.php",
+      "last_verified": "2026-11-03",
+      "status_as_of": "10th PSC meeting 29 June 2026",
+      "source_note": "Project cost estimate is not evidence of a loan, grant paid, or cash disbursement. Verify full block name from source PDF before project-level due diligence.",
+      "news_articles": []
     }
   ]
 }
