@@ -21,6 +21,36 @@ if count != 1:
     raise ValueError("Website source data marker was not found")
 dest = root / "_site"
 dest.mkdir(exist_ok=True)
+# Add an automatic, dated entry point to the newest newspaper issue.
+# The daily publishing agent only writes dated HTML + the index; this link
+# updates on the next Pages build without a manual homepage edit.
+issue_meta = json.loads((root / "data/newspaper-index.json").read_text(encoding="utf-8"))
+listed_issues = issue_meta.get("issues", [])
+if listed_issues and 'class="publication-nav"' in new:
+    latest = max(listed_issues, key=lambda item: item["date"])
+    latest_day = latest["date"]
+    latest_desc = html.escape(latest.get("description", ""), quote=True)
+    new = new.replace("</style>",
+        """.latest-newspaper{background:#fff8f2;border:1px solid #e3c6b3;
+        border-left:4px solid #C7551B;border-radius:7px;padding:13px 16px;
+        margin:0 0 18px;display:flex;gap:12px;justify-content:space-between;
+        align-items:center;flex-wrap:wrap;color:#41200E}
+        .latest-newspaper strong{display:block;font-size:15px}
+        .latest-newspaper p{margin:3px 0 0;color:#645247;font-size:12px}
+        .latest-newspaper a{display:inline-block;background:#C7551B;color:#fff;
+        border-radius:5px;padding:9px 13px;text-decoration:none;font-weight:700}
+        .latest-newspaper a:hover,.latest-newspaper a:focus-visible{background:#41200E}
+        @media(max-width:590px){.latest-newspaper a{width:100%;text-align:center}}
+        </style>""", 1)
+    strip = ('<aside class="latest-newspaper"><div>'
+            '<strong>Latest Sakariya Mining &amp; Graphite Daily · '+latest_day+'</strong>'
+            '<p>'+latest_desc+'</p></div>'
+            '<a href="newspaper/'+latest_day+'.html">Read latest edition ↗</a>'
+            '</aside>')
+    new = new.replace('</nav><div class="intro">', '</nav>'+strip+'<div class="intro">', 1)
+new = new.replace("</head>",
+    '<link rel="alternate" type="application/rss+xml" title="Sakariya Mining Daily RSS" href="feed.xml">'
+    +"</head>",1)
 (dest / "index.html").write_text(new, encoding="utf-8")
 (dest / ".nojekyll").write_text("", encoding="utf-8")
 print(f"Built public site with {len(public)} source records.")
