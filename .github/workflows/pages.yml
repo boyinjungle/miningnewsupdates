@@ -6,9 +6,11 @@ on:
       - "index.html"
       - "data/sources.json"
       - "data/newspaper-index.json"
+      - "data/people.json"
       - "newspaper/**"
       - "scripts/build.py"
       - "scripts/archive_search.py"
+      - "scripts/people_directory.py"
       - "scripts/validate_publish.py"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
