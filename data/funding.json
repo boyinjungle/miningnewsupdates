@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "transactions": [
+    {
+      "id": "doe-vidalia-atvm-2022",
+      "project_id": "syrah-vidalia",
+      "funder": "U.S. Department of Energy — Loan Programs Office",
+      "funder_country": "United States",
+      "recipient": "Syrah Technologies LLC",
+      "instrument": "Government loan",
+      "status": "Closed financing",
+      "amount": 102100000,
+      "currency": "USD",
+      "announced_date": "2022-07-27",
+      "source_url": "https://www.energy.gov/articles/doe-announces-first-advanced-technology-vehicles-manufacturing-loan-more-decade",
+      "context": "DOE stated that it closed a US$102.1 million ATVM loan to support expansion of the Syrah Vidalia facility.",
+      "disbursement_verified": false,
+      "disbursement_note": "Closing is verified; drawdown amount or repayment status is not established by this announcement.",
+      "last_verified": "2026-11-03"
+    },
+    {
+      "id": "doe-vidalia-battery-grant-selection-2022",
+      "project_id": "syrah-vidalia",
+      "funder": "U.S. Department of Energy",
+      "funder_country": "United States",
+      "recipient": "Syrah Technologies LLC",
+      "instrument": "Grant selection",
+      "status": "Selected / award not verified",
+      "amount": 219820610,
+      "currency": "USD",
+      "announced_date": "2022-10-20",
+      "source_url": "https://www.opportunitylouisiana.gov/project/syrah-resources",
+      "context": "Louisiana Economic Development states that DOE selected Syrah for about US$220 million in grant funding for a further Vidalia expansion. The precise federal cost share in DOE selectee fact sheet was US$219,820,610.",
+      "disbursement_verified": false,
+      "disbursement_note": "Selection is not evidence of executed award or funds received; require current DOE records before changing this status.",
+      "last_verified": "2026-11-03"
+    },
+    {
+      "id": "efa-ardea-loi-2026",
+      "project_id": "ardea-kalgoorlie-nickel",
+      "funder": "Export Finance Australia",
+      "funder_country": "Australia",
+      "recipient": "Ardea Resources Limited / Kalgoorlie Nickel Project",
+      "instrument": "Letter of support/interest",
+      "status": "Indicative / non-binding",
+      "amount": 500000000,
+      "currency": "USD",
+      "announced_date": null,
+      "source_url": "https://www.minister.industry.gov.au/king/media/australia-us-critical-minerals-framework-investing-additional-projects",
+      "context": "Australian government reported a letter of support/interest of up to US$500 million for Ardea's Kalgoorlie Nickel Project. Confirm letter date in original release; event date is approximate and not used as evidence of loan closing.",
+      "disbursement_verified": false,
+      "disbursement_note": "Indicative support only; not funding received.",
+      "last_verified": "2026-11-03"
+    },
+    {
+      "id": "us-exim-ardea-loi-2026",
+      "project_id": "ardea-kalgoorlie-nickel",
+      "funder": "Export-Import Bank of the United States (EXIM)",
+      "funder_country": "United States",
+      "recipient": "Ardea Resources Limited / Kalgoorlie Nickel Project",
+      "instrument": "Letter of support/interest",
+      "status": "Indicative / non-binding",
+      "amount": 500000000,
+      "currency": "USD",
+      "announced_date": null,
+      "source_url": "https://www.minister.industry.gov.au/king/media/australia-us-critical-minerals-framework-investing-additional-projects",
+      "context": "Australian government reported a separate EXIM letter of support/interest of up to US$500 million, not a loan commitment. Exact transaction date requires further confirmation.",
+      "disbursement_verified": false,
+      "disbursement_note": "Do not sum as funded project capital or cash received.",
+      "last_verified": "2026-11-03"
+    }
+  ]
+}
