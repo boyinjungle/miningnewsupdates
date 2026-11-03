@@ -129,7 +129,7 @@ function render(){
 }
 q.addEventListener('input',render);[country,commodity,type].forEach(n=>n.addEventListener('change',render));
 $('clear').onclick=()=>{q.value='';country.value='';commodity.value='';type.value='';if(mode==='funding')history.replaceState(null,'',location.pathname);render();};render();
-const target=selected?$(mode.slice(0,-1)+'-'+selected):null;if(target)target.scrollIntoView();
+const target=selected?$((mode==='projects'?'project-':'funding-')+selected):null;if(target)target.scrollIntoView();
 })();
 """
 def main():
