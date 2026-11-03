@@ -42,7 +42,7 @@ for item in issues:
     target.parent.mkdir(exist_ok=True)
     shutil.copyfile(path, target)
     valid.append({"date": day, "title": item.get("title", f"Mining Newspaper — {day}"),
-                  "description": item.get("description", ""), "url": f"newspaper/{day}.html"})
+                  "description": item.get("description", ""), "url": f"{day}.html"})
 valid.sort(key=lambda i: i["date"], reverse=True)
 entries = []
 for i in valid:
