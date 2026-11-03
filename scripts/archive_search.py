@@ -108,9 +108,9 @@ def compile_issue(day, original):
         def brief_sub(p):
             nonlocal brief
             p_attrs,p_inner=p.group(1),p.group(2)
-            heading=re.match(r"\s*<strong>(.*?)</strong>\s*:\s*",p_inner,re.I|re.S)
+            heading=re.match(r"\s*<strong>(.*?)</strong>\s*:?\s*",p_inner,re.I|re.S)
             if not heading: return p.group(0)
-            title=plain(heading.group(1))
+            title=plain(heading.group(1)).rstrip(":")
             body=plain(p_inner)
             if len(body)<80: return p.group(0)
             # Do not market absence of public social discussion as an actual social-media article.
