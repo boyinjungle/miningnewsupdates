@@ -12,6 +12,8 @@ Never edit generated site output.
 | data/newspaper-index.json | Newest-first metadata for every published edition |
 | data/sources.json | Public deduplicated directory records |
 | data/people.json | Verified public professional profiles and cross-linked newspaper mentions |
+| data/projects.json | Global public project, mine, battery and processing-plant register |
+| data/funding.json | Funders, instruments, transaction status and amount linked to project IDs |
 | index.html | Source directory website template |
 | scripts/build.py | Source directory and newspaper build coordinator |
 | scripts/archive_search.py | Cross-date article search, tags, navigation and UI |
@@ -52,3 +54,7 @@ Newspaper: https://boyinjungle.github.io/miningnewsupdates/newspaper/
 Directory: https://boyinjungle.github.io/miningnewsupdates/
 
 Keep Sakariya's light Heritage Broadsheet design, brand colors and original editorial content. Make source links prominent and visuals purposeful. Do not claim Proxima Nova is embedded unless licensed and actually present. **GitHub Pages is public hosting and must not serve employee-only intelligence.** An internal archive will require separately authenticated hosting.
+
+## Linked Project and Funding Registers
+
+Projects and processing/battery plants are listed at https://boyinjungle.github.io/miningnewsupdates/projects/; project financing events at https://boyinjungle.github.io/miningnewsupdates/funding/. The ChatGPT publishing agent must preserve stable project and transaction IDs and source every updated record. The funding register records each instrument separately with original currency and status; letters of interest, selections and conditional commitments must never be presented as disbursed or received financing. A project profile displays linked funding history but should not simply sum indicative and secured financing. The Pages build generates both directories with scripts/project_funding.py; validation prevents broken cross-references.
