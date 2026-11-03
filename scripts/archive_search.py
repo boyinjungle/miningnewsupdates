@@ -326,7 +326,6 @@ filter();
  align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
  color:#41200E;font:14px/1.5 'Proxima Nova',Arial,sans-serif}
 .sakariya-brand-bridge .brand-name{display:block;font-weight:800;font-size:15px;color:#41200E}
-.sakariya-brand-bridge .brand-desc{font-size:12px;color:#735949}
 .sakariya-brand-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .sakariya-brand-actions a,.sakariya-brand-actions button{border:1px solid #C7551B;border-radius:6px;
  padding:9px 12px;text-decoration:none;font:700 13px/1.35 'Proxima Nova',Arial,sans-serif;cursor:pointer}
@@ -335,49 +334,27 @@ filter();
 .sakariya-brand-actions button{background:#fff;color:#80350e}
 .sakariya-brand-actions button:hover,.sakariya-brand-actions button:focus-visible{background:#fff0e4}
 .sakariya-brand-actions :is(a,button):focus-visible{outline:3px solid #C7551B;outline-offset:2px}
-.sakariya-brand-outro{max-width:1120px;margin:28px auto 38px;border-left:4px solid #C7551B;
- border-radius:8px;background:#fff;padding:20px 22px;box-shadow:0 1px 4px #41200e12;
- color:#41200E;font:15px/1.6 'Proxima Nova',Arial,sans-serif}
-.sakariya-brand-outro h2{border:0!important;padding:0!important;margin:0 0 6px!important;
- font:700 24px/1.2 Georgia,serif!important}
-.sakariya-brand-outro p{margin:6px 0 14px}
-.sakariya-brand-outro .brand-desc{font-size:13px;color:#685349}
 .sakariya-reading-progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:1050;
  background:#C7551B;pointer-events:none}
 .sakariya-section-symbol{font:normal 20px/1 sans-serif;margin-right:9px;vertical-align:baseline}
 .sakariya-share-status{font-size:12px;min-height:1em;color:#41200E}
 @media(max-width:750px){.sakariya-brand-bridge{margin:12px;padding:12px}
-.sakariya-brand-outro{margin:22px 12px;padding:16px}.sakariya-brand-actions{width:100%}
+.sakariya-brand-actions{width:100%}
 .sakariya-brand-actions a,.sakariya-brand-actions button{flex:1;text-align:center}}
 @media print{.sakariya-brand-bridge,.sakariya-reading-progress{display:none}}
 </style>"""
     topbridge = ("""
 <aside class="sakariya-brand-bridge" aria-label="Explore Sakariya Mines and Minerals">
-<div><span class="brand-name">Explore Sakariya Mines &amp; Minerals</span>
-<span class="brand-desc">Gold, graphite and mineral exploration · Reshaping Resources</span></div>
+<div><span class="brand-name">Explore Sakariya Mines &amp; Minerals</span></div>
 <div class="sakariya-brand-actions">
 <a href="https://www.sakariyamines.com/" target="_blank" rel="noopener noreferrer">Visit Sakariya ↗</a>
 <button type="button" class="sakariya-share-news" aria-label="Share this newspaper">↗ Share edition</button>
 </div></aside>""")
-    outro = ("""
-<aside class="sakariya-brand-outro" aria-label="About Sakariya">
-<div class="brand-desc">FROM THE PUBLISHER · SAKARIYA MINES &amp; MINERALS</div>
-<h2>Curious about the exploration work behind the news?</h2>
-<p>Explore Sakariya's gold and graphite projects, technical approach and partnership opportunities.</p>
-<div class="sakariya-brand-actions">
-<a href="https://www.sakariyamines.com/" target="_blank" rel="noopener noreferrer">Explore our projects ↗</a>
-<a href="https://www.sakariyamines.com/contact" target="_blank" rel="noopener noreferrer">Contact Sakariya ↗</a>
-<button type="button" class="sakariya-share-news">↗ Share this edition</button>
-</div><div class="sakariya-share-status" role="status" aria-live="polite"></div></aside>""")
     # The archive builder operates on the published copy only, never the
     # underlying editorial source saved to the repository.
     annotated=annotated.replace("</head>",brandcss+"</head>",1)
     if "</header>" in annotated:
         annotated=annotated.replace("</header>","</header>"+topbridge,1)
-    if "</main>" in annotated:
-        annotated=annotated.replace("</main>",outro+"</main>",1)
-    else:
-        annotated=annotated.replace("</footer>",outro+"</footer>",1)
     # Search engine and social share previews link to the source edition.
     description=("Sakariya Mining & Graphite Daily | "+day+
                  " — gold, graphite, critical minerals and global mining intelligence.")
