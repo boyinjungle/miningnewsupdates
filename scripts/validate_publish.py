@@ -90,10 +90,27 @@ def main():
                 fail(f"article missing {field}: {entry.get('title')}")
         if not entry["url"].startswith(entry["date"]+".html#"):
             fail(f"invalid article anchor URL: {entry['url']}")
+    # Require the people directory and validate all source-linked public entries.
+    people_page = SITE / "people/index.html"
+    people_data_path = SITE / "people/people.json"
+    if not people_page.is_file() or not people_data_path.is_file():
+        fail("People Directory not generated")
+    people_data = read_json(people_data_path)
+    if people_data.get("schema_version") != 1 or not isinstance(people_data.get("people"), list):
+        fail("Invalid published people directory format")
+    for person in people_data["people"]:
+        for field in ("name","designation","company","country","verification_url","commodities","mentions"):
+            if not person.get(field):
+                fail(f"People record missing {field}: {person.get('name')}")
+        if not valid_url(person["verification_url"]):
+            fail(f"People verification URL is invalid: {person.get('name')}")
+        for mention in person["mentions"]:
+            if not valid_url(mention.get("source_url", "")):
+                fail(f"People news source URL is invalid: {person.get('name')}")
     # Sitemap is for publication pages, not every anchor fragment.
     ns="http://www.sitemaps.org/schemas/sitemap/0.9"
     sitemap = ET.Element("urlset", xmlns=ns)
-    pages = [("",None),("newspaper/",None)] + [
+    pages = [("",None),("newspaper/",None),("people/",None)] + [
         ("newspaper/"+i["date"]+".html",i["date"])
         for i in sorted(issues,key=lambda i:i["date"],reverse=True)
     ]
