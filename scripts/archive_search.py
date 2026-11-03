@@ -180,7 +180,7 @@ article[id],p[id^="brief-"]{scroll-margin-top:30px}
                           html.escape(tag)+'</option>' for tag in tag_values)
     jump = ("""
 <section class="issue-jump" id="jump-to-news" aria-label="Jump to news by topic or tag">
-<div class="issue-jump-head"><strong>Jump to news in this edition</strong>
+<div class="issue-jump-head"><strong>Find an article in this edition</strong>
 <a href="index.html#articles">Search all dates ↗</a></div>
 <div class="issue-jump-controls">
 <label>Topic <select id="issue-topic"><option value="">All topics</option>""" +
@@ -190,9 +190,10 @@ article[id],p[id^="brief-"]{scroll-margin-top:30px}
 <label class="issue-query-label">Headline search
 <input id="issue-query" type="search" placeholder="Search this edition…"></label>
 <button id="issue-clear" type="button">Clear</button></div>
+<div class="issue-jump-picker"><label for="issue-story-select">Jump to article</label>
+<select id="issue-story-select" aria-describedby="issue-jump-count"><option value="">Select a headline…</option></select>
 <div class="issue-jump-status" id="issue-jump-count" aria-live="polite"></div>
-<ul class="issue-jump-results" id="issue-jump-results"></ul>
-</section>""" )
+</div></section>""" )
     jumpcss = """
 <style id="sakariya-issue-jump-styles">
 .issue-jump{max-width:1120px;margin:18px auto 10px;padding:16px 18px;
@@ -207,16 +208,16 @@ article[id],p[id^="brief-"]{scroll-margin-top:30px}
  background:#fff;color:#21140e;padding:8px 9px;font:14px/1.4 'Proxima Nova',Arial,sans-serif}
 .issue-jump-controls button{padding:9px 14px;border:1px solid #ae8b76;background:#F5F3F0;
  color:#41200E;border-radius:5px;font-weight:650}
-.issue-jump-status{color:#6d5344;font-size:12px;margin-bottom:5px}
-.issue-jump-results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 22px;
- list-style:none;margin:5px 0 0;padding:0}
-.issue-jump-results li{margin:0;padding:3px 0;min-width:0}
-.issue-jump-results a{color:#80340c;font-weight:600;text-decoration:underline;text-underline-offset:3px}
-.issue-jump-results a:hover{color:#41200E}
-.issue-jump-results[hidden]{display:none}
+.issue-jump-status{color:#6d5344;font-size:12px}
+.issue-jump-picker{display:flex;align-items:center;gap:12px;padding-top:7px;border-top:1px solid #e5d7cd;flex-wrap:wrap}
+.issue-jump-picker label{font-weight:700;color:#41200E;white-space:nowrap}
+.issue-jump-picker select{flex:1 1 330px;min-width:0;border:1px solid #bba99c;border-radius:5px;background:#fff;color:#21140e;padding:10px 11px;font:14px/1.4 'Proxima Nova',Arial,sans-serif}
+.issue-jump-picker select:disabled{background:#eee9e4;color:#6c625c}
+.issue-jump-status{margin:0;white-space:nowrap}
+.issue-jump-picker select:focus-visible{outline:3px solid #C7551B;outline-offset:2px}
 .issue-jump select:focus-visible,.issue-jump input:focus-visible,.issue-jump a:focus-visible,
 .issue-jump button:focus-visible{outline:3px solid #C7551B;outline-offset:2px}
-@media(max-width:700px){.issue-jump{margin:12px;padding:13px}.issue-jump-results{grid-template-columns:1fr}
+@media(max-width:700px){.issue-jump{margin:12px;padding:13px}.issue-jump-picker{align-items:stretch}.issue-jump-picker select{flex-basis:100%}
 .issue-jump-controls label{flex-basis:44%}.issue-jump-controls .issue-query-label{flex-basis:100%}}
 .back-to-tags{position:fixed;right:clamp(14px,3vw,30px);bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:1000;display:inline-flex;align-items:center;gap:8px;border:2px solid #fff;box-shadow:0 3px 15px #41200e40;background:#C7551B;color:#fff!important;border-radius:30px;padding:11px 16px;text-decoration:none!important;font:750 13px/1.3 'Proxima Nova',Arial,sans-serif;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .18s ease,transform .18s ease}
 .back-to-tags.is-visible{opacity:1;pointer-events:auto;transform:translateY(0)}
@@ -232,22 +233,48 @@ article[id],p[id^="brief-"]{scroll-margin-top:30px}
 (()=>{
 const data=JSON.parse(document.getElementById('issue-story-data').textContent);
 const topic=document.getElementById('issue-topic'),tag=document.getElementById('issue-tag');
-const query=document.getElementById('issue-query'),results=document.getElementById('issue-jump-results');
+const query=document.getElementById('issue-query'),picker=document.getElementById('issue-story-select');
 const count=document.getElementById('issue-jump-count');
+const allTopics=[...topic.options].map(x=>({value:x.value,label:x.textContent}));
+const allTags=[...tag.options].map(x=>({value:x.value,label:x.textContent}));
+const makeOptions=(select,all,allowed)=>{
+ const previous=select.value;
+ select.replaceChildren();
+ for(const item of all){
+   if(item.value&&!allowed.has(item.value))continue;
+   const opt=document.createElement('option');opt.value=item.value;opt.textContent=item.label;
+   select.append(opt);
+ }
+ select.value=allowed.has(previous)?previous:'';
+};
 const filter=()=>{
- const t=topic.value,g=tag.value,q=query.value.toLocaleLowerCase().trim();
+ let t=topic.value,g=tag.value,q=query.value.toLocaleLowerCase().trim();
+ const matchingTopic=data.filter(x=>(!g||x.tags.includes(g))&&(!q||[x.title,...x.tags].join(' ').toLocaleLowerCase().includes(q)));
+ makeOptions(topic,allTopics,new Set(matchingTopic.flatMap(x=>x.topics)));
+ t=topic.value;
+ const matchingTags=data.filter(x=>(!t||x.topics.includes(t))&&(!q||[x.title,...x.tags].join(' ').toLocaleLowerCase().includes(q)));
+ makeOptions(tag,allTags,new Set(matchingTags.flatMap(x=>x.tags)));
+ g=tag.value;
  const subset=data.filter(item=>(!t||item.topics.includes(t))&&(!g||item.tags.includes(g))
    &&(!q||[item.title,...item.tags].join(' ').toLocaleLowerCase().includes(q)));
- results.replaceChildren();
+ picker.replaceChildren();
+ const placeholder=document.createElement('option');
+ placeholder.value='';placeholder.textContent=subset.length?'Select a headline…':'No matching articles';
+ picker.append(placeholder);
  subset.forEach(item=>{
-  const li=document.createElement('li'),a=document.createElement('a');
-  a.href='#'+encodeURIComponent(item.anchor);a.textContent=item.title;
-  li.appendChild(a);results.appendChild(li);
+  const opt=document.createElement('option');
+  opt.value=item.anchor;opt.textContent=item.title;picker.append(opt);
  });
+ picker.disabled=subset.length===0;
  count.textContent=subset.length+' matching article'+(subset.length===1?'':'s');
 };
 [topic,tag].forEach(x=>x.addEventListener('change',filter));
 query.addEventListener('input',filter);
+picker.addEventListener('change',()=>{
+ if(!picker.value)return;
+ const target=document.getElementById(picker.value);
+ if(target){target.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});history.replaceState(null,'','#'+encodeURIComponent(picker.value));}
+});
 document.getElementById('issue-clear').addEventListener('click',()=>{
  topic.value='';tag.value='';query.value='';filter();
 });
@@ -261,11 +288,11 @@ filter();
         annotated=re.sub(r"</nav\s*>",lambda m:m.group(0)+jump,annotated,count=1,flags=re.I)
     # Fixed return-to-filters action appears after scrolling into the articles.
     back_link = ('<a href="#jump-to-news" class="back-to-tags" id="back-to-tags" '
-                 'aria-label="Back to news topic and tag filters" title="Back to tag filters">'
+                 'aria-label="Go to top of newspaper" title="Go to top">'
                  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" '
                  'stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" '
                  'aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>'
-                 '<span>Tag filters</span></a>')
+                 '<span>Go to top</span></a>')
     back_script = """<script>
 (()=>{
  const action=document.getElementById('back-to-tags');
