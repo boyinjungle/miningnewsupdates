@@ -353,8 +353,14 @@ filter();
     # The archive builder operates on the published copy only, never the
     # underlying editorial source saved to the repository.
     annotated=annotated.replace("</head>",brandcss+"</head>",1)
-    if "</header>" in annotated:
-        annotated=annotated.replace("</header>","</header>"+topbridge,1)
+    # Keep the compact publisher link at the foot of the newspaper,
+    # not under the masthead; this is intentionally not a large promo panel.
+    if "</main>" in annotated:
+        annotated=annotated.replace("</main>",topbridge+"</main>",1)
+    elif "</footer>" in annotated:
+        annotated=annotated.replace("</footer>",topbridge+"</footer>",1)
+    else:
+        annotated=annotated.replace("</body>",topbridge+"</body>",1)
     # Search engine and social share previews link to the source edition.
     description=("Sakariya Mining & Graphite Daily | "+day+
                  " — gold, graphite, critical minerals and global mining intelligence.")
