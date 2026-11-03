@@ -131,10 +131,31 @@ def main():
             fail("Disbursed funding record lacks evidence flag")
         if not valid_url(t["source_url"]):
             fail("Funding transaction missing source URL")
+    # Company registry: the public page must be backed by verified, valid crosslinks.
+    companies_page = SITE / "companies/index.html"
+    companies_json = SITE / "companies/companies.json"
+    if not companies_page.is_file() or not companies_json.is_file():
+        fail("Company Directory not generated")
+    comp_data = read_json(companies_json)
+    if comp_data.get("schema_version") != 1 or not isinstance(comp_data.get("companies"), list):
+        fail("Invalid published company registry schema")
+    company_ids = set()
+    for company in comp_data["companies"]:
+        if company["id"] in company_ids:
+            fail("Duplicate company registry ID")
+        company_ids.add(company["id"])
+        if not valid_url(company["verification_url"]):
+            fail("Company lacking public verification URL")
+        for project in company["projects"]:
+            if project["id"] not in ids:
+                fail("Company linked to missing project")
+        for event in company["funding"]:
+            if event["project_id"] not in ids:
+                fail("Company linked to missing funding project")
     # Sitemap is for publication pages, not every anchor fragment.
     ns="http://www.sitemaps.org/schemas/sitemap/0.9"
     sitemap = ET.Element("urlset", xmlns=ns)
-    pages = [("",None),("newspaper/",None),("people/",None),("projects/",None),("funding/",None)] + [
+    pages = [("",None),("newspaper/",None),("people/",None),("projects/",None),("funding/",None),("companies/",None)] + [
         ("newspaper/"+i["date"]+".html",i["date"])
         for i in sorted(issues,key=lambda i:i["date"],reverse=True)
     ]
