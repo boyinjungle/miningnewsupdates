@@ -64,7 +64,7 @@ def shell(kind, title, desc, payload):
 <label>Country <select id="country"><option value="">All countries</option></select></label>
 <label>Commodity <select id="commodity"><option value="">All commodities</option></select></label>
 <label>'''+("Facility type" if kind=="projects" else "Funding status")+''' <select id="type"><option value="">All types</option></select></label>
-'''+('<label>Funder / financing agency<select id="funder"><option value="">All funders</option></select></label>' if kind=="funding" else '')+'''<button id="clear" type="button">Clear filters</button></section>
+'''+('<label>Funder / financing agency<select id="funder"><option value="">All funders</option></select></label><label>From date<input id="date-from" type="date" aria-label="Funding announced from date"></label><label>To date<input id="date-to" type="date" aria-label="Funding announced through date"></label>' if kind=="funding" else '')+'''<button id="clear" type="button">Clear filters</button></section>
 <div class="meta"><h2>'''+("Projects and facilities" if kind=="projects" else "Funding and investment events")+'''</h2><span id="count" aria-live="polite"></span></div>
 <div class="cards" id="results"></div><div class="empty" id="empty" hidden>No matching verified records. New records are added after confirming an authoritative public disclosure.</div>
 </main><footer class="footer">SAKARIYA MINES &amp; MINERALS · PUBLIC RESEARCH DIRECTORY · RESHAPING RESOURCES</footer>
@@ -73,7 +73,7 @@ def shell(kind, title, desc, payload):
 JS= r"""
 (()=>{
 const mode=MODE, data=JSON.parse(document.getElementById('registry').textContent);
-const $=id=>document.getElementById(id), q=$('q'),country=$('country'),commodity=$('commodity'),type=$('type'),funder=$('funder'),results=$('results');
+const $=id=>document.getElementById(id), q=$('q'),country=$('country'),commodity=$('commodity'),type=$('type'),funder=$('funder'),from=$('date-from'),to=$('date-to'),results=$('results');
 const params=new URLSearchParams(location.search);
 function E(tag,cls,txt){const x=document.createElement(tag);if(cls)x.className=cls;if(txt!==undefined)x.textContent=txt;return x;}
 function link(text,url){const a=E('a','',text);a.href=url;if(url.startsWith('http')){a.target='_blank';a.rel='noopener noreferrer';}return a;}
@@ -88,7 +88,7 @@ options(country,list.map(x=>mode==='projects'?x.country:projectFor(x).country));
 options(commodity,list.flatMap(x=>mode==='projects'?x.commodities:projectFor(x).commodities));
 options(type,list.map(x=>mode==='projects'?x.type:x.status));
 if(funder)options(funder,list.map(x=>x.funder));
-q.value=params.get('q')||'';country.value=params.get('country')||'';commodity.value=params.get('commodity')||'';type.value=params.get('type')||'';if(funder)funder.value=params.get('funder')||'';
+q.value=params.get('q')||'';country.value=params.get('country')||'';commodity.value=params.get('commodity')||'';type.value=params.get('type')||'';if(funder)funder.value=params.get('funder')||'';if(from)from.value=params.get('from')||'';if(to)to.value=params.get('to')||'';
 const selected=params.get(mode==='projects'?'project':'funding');
 let projectFilter=params.get('project');
 function money(t){const symbol=t.currency==='USD'?'US$':t.currency==='AUD'?'A$':t.currency+' ';return symbol+(t.amount>=1e9?(t.amount/1e9).toLocaleString('en-US',{maximumFractionDigits:2})+'bn':t.amount>=1e6?(t.amount/1e6).toLocaleString('en-US',{maximumFractionDigits:2})+'m':t.amount.toLocaleString('en-US'));}
@@ -121,16 +121,20 @@ function drawFunding(t){
 }
 function render(){
  const term=q.value.trim().toLowerCase(),c=country.value,m=commodity.value,t=type.value,fu=funder?funder.value:'';
+ const start=from?from.value:'',end=to?to.value:'';
  const found=list.filter(x=>{const p=mode==='projects'?x:projectFor(x);const all=mode==='projects'?[p.name,p.company,p.location,p.country,p.stage,p.summary,...p.commodities]:[x.funder,x.funder_country,x.recipient,x.instrument,x.status,x.context,p.name,p.country,p.company,...p.commodities];
- return (!c||p.country===c)&&(!m||p.commodities.includes(m))&&(!t||(mode==='projects'?p.type===t:x.status===t))&&(!term||all.join(' ').toLowerCase().includes(term))&&(!fu||x.funder===fu)&&!(mode==='funding'&&projectFilter&&x.project_id!==projectFilter);
+ return (!c||p.country===c)&&(!m||p.commodities.includes(m))&&(!t||(mode==='projects'?p.type===t:x.status===t))&&(!term||all.join(' ').toLowerCase().includes(term))&&(!fu||x.funder===fu)&&!(mode==='funding'&&projectFilter&&x.project_id!==projectFilter)&&
+ (mode==='projects'||(!start||(x.announced_date&&x.announced_date>=start)))&&
+ (mode==='projects'||(!end||(x.announced_date&&x.announced_date<=end)));
  });
+ found.sort((a,b)=>mode==='funding'?((b.announced_date||'').localeCompare(a.announced_date||'')||a.id.localeCompare(b.id)):(a.name||'').localeCompare(b.name||''));
  results.replaceChildren();found.forEach(x=>results.append(mode==='projects'?drawProject(x):drawFunding(x)));
  $('empty').hidden=found.length>0;$('count').textContent=found.length+' record'+(found.length===1?'':'s');
- const v=new URLSearchParams();if(term)v.set('q',q.value);if(c)v.set('country',c);if(m)v.set('commodity',m);if(t)v.set('type',t);if(fu)v.set('funder',fu);if(projectFilter&&mode==='funding')v.set('project',projectFilter);
+ const v=new URLSearchParams();if(term)v.set('q',q.value);if(c)v.set('country',c);if(m)v.set('commodity',m);if(t)v.set('type',t);if(fu)v.set('funder',fu);if(start)v.set('from',start);if(end)v.set('to',end);if(projectFilter&&mode==='funding')v.set('project',projectFilter);
  history.replaceState(null,'',location.pathname+(v.toString()?'?'+v:'')+location.hash);
 }
-q.addEventListener('input',render);[country,commodity,type,funder].filter(Boolean).forEach(n=>n.addEventListener('change',render));
-$('clear').onclick=()=>{q.value='';country.value='';commodity.value='';type.value='';if(funder)funder.value='';projectFilter=null;render();};render();
+q.addEventListener('input',render);[country,commodity,type,funder,from,to].filter(Boolean).forEach(n=>n.addEventListener('change',render));
+$('clear').onclick=()=>{q.value='';country.value='';commodity.value='';type.value='';if(funder)funder.value='';if(from)from.value='';if(to)to.value='';projectFilter=null;render();};render();
 const target=selected?$((mode==='projects'?'project-':'funding-')+selected):null;if(target)target.scrollIntoView();
 })();
 """
