@@ -166,6 +166,93 @@ article[id],p[id^="brief-"]{scroll-margin-top:30px}
             annotated=re.sub(r"</header\s*>",lambda m:m.group(0)+crossnav,annotated,count=1,flags=re.I)
         else:
             annotated=re.sub(r"<body([^>]*)>",lambda m:m.group(0)+crossnav,annotated,count=1,flags=re.I)
+    # Within-edition navigation: tag/topic filters list article links that jump
+    # directly to their original anchors. Other tag chips still open all dates.
+    jump_items = [{"title":x["title"],"anchor":x["url"].split("#")[-1],
+                   "tags":x["tags"],"topics":x["topics"]} for x in records]
+    jump_json = json.dumps(jump_items,ensure_ascii=False).replace("<",r"\u003c")
+    topic_labels = [(key,label) for key,label,_,_ in TOPICS
+                    if any(key in item["topics"] for item in records)]
+    tag_values = sorted({t for item in records for t in item["tags"]},key=str.lower)
+    topic_options = "".join('<option value="'+html.escape(key,quote=True)+'">'+
+                            html.escape(label)+'</option>' for key,label in topic_labels)
+    tag_options = "".join('<option value="'+html.escape(tag,quote=True)+'">'+
+                          html.escape(tag)+'</option>' for tag in tag_values)
+    jump = ("""
+<section class="issue-jump" id="jump-to-news" aria-label="Jump to news by topic or tag">
+<div class="issue-jump-head"><strong>Jump to news in this edition</strong>
+<a href="index.html#articles">Search all dates ↗</a></div>
+<div class="issue-jump-controls">
+<label>Topic <select id="issue-topic"><option value="">All topics</option>""" +
+            topic_options + """</select></label>
+<label>Tag <select id="issue-tag"><option value="">All tags</option>""" +
+            tag_options + """</select></label>
+<label class="issue-query-label">Headline search
+<input id="issue-query" type="search" placeholder="Search this edition…"></label>
+<button id="issue-clear" type="button">Clear</button></div>
+<div class="issue-jump-status" id="issue-jump-count" aria-live="polite"></div>
+<ul class="issue-jump-results" id="issue-jump-results"></ul>
+</section>""" )
+    jumpcss = """
+<style id="sakariya-issue-jump-styles">
+.issue-jump{max-width:1120px;margin:18px auto 10px;padding:16px 18px;
+ background:#fff;border:1px solid #dacbbf;border-left:4px solid #C7551B;
+ border-radius:6px;color:#281b12;font:14px/1.45 'Proxima Nova',Arial,sans-serif}
+.issue-jump-head{display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.issue-jump-head strong{font-size:17px;color:#41200E}
+.issue-jump-head a{color:#914014;font-weight:650}
+.issue-jump-controls{display:flex;flex-wrap:wrap;align-items:end;gap:10px;margin:12px 0}
+.issue-jump-controls label{display:flex;flex-direction:column;gap:4px;flex:1 1 150px;font-size:12px;font-weight:700;color:#41200E}
+.issue-jump-controls select,.issue-jump-controls input{width:100%;min-width:0;border:1px solid #bba99c;border-radius:5px;
+ background:#fff;color:#21140e;padding:8px 9px;font:14px/1.4 'Proxima Nova',Arial,sans-serif}
+.issue-jump-controls button{padding:9px 14px;border:1px solid #ae8b76;background:#F5F3F0;
+ color:#41200E;border-radius:5px;font-weight:650}
+.issue-jump-status{color:#6d5344;font-size:12px;margin-bottom:5px}
+.issue-jump-results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 22px;
+ list-style:none;margin:5px 0 0;padding:0}
+.issue-jump-results li{margin:0;padding:3px 0;min-width:0}
+.issue-jump-results a{color:#80340c;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.issue-jump-results a:hover{color:#41200E}
+.issue-jump-results[hidden]{display:none}
+.issue-jump select:focus-visible,.issue-jump input:focus-visible,.issue-jump a:focus-visible,
+.issue-jump button:focus-visible{outline:3px solid #C7551B;outline-offset:2px}
+@media(max-width:700px){.issue-jump{margin:12px;padding:13px}.issue-jump-results{grid-template-columns:1fr}
+.issue-jump-controls label{flex-basis:44%}.issue-jump-controls .issue-query-label{flex-basis:100%}}
+@media print{.issue-jump{display:none}}
+</style>"""
+    jumpscript = """<script type="application/json" id="issue-story-data">""" + jump_json + """</script>
+<script>
+(()=>{
+const data=JSON.parse(document.getElementById('issue-story-data').textContent);
+const topic=document.getElementById('issue-topic'),tag=document.getElementById('issue-tag');
+const query=document.getElementById('issue-query'),results=document.getElementById('issue-jump-results');
+const count=document.getElementById('issue-jump-count');
+const filter=()=>{
+ const t=topic.value,g=tag.value,q=query.value.toLocaleLowerCase().trim();
+ const subset=data.filter(item=>(!t||item.topics.includes(t))&&(!g||item.tags.includes(g))
+   &&(!q||[item.title,...item.tags].join(' ').toLocaleLowerCase().includes(q)));
+ results.replaceChildren();
+ subset.forEach(item=>{
+  const li=document.createElement('li'),a=document.createElement('a');
+  a.href='#'+encodeURIComponent(item.anchor);a.textContent=item.title;
+  li.appendChild(a);results.appendChild(li);
+ });
+ count.textContent=subset.length+' matching article'+(subset.length===1?'':'s');
+};
+[topic,tag].forEach(x=>x.addEventListener('change',filter));
+query.addEventListener('input',filter);
+document.getElementById('issue-clear').addEventListener('click',()=>{
+ topic.value='';tag.value='';query.value='';filter();
+});
+filter();
+})();
+</script>"""
+    annotated=annotated.replace("</head>",jumpcss+"</head>",1)
+    if re.search(r"<main\b[^>]*>",annotated,re.I):
+        annotated=re.sub(r"<main\b[^>]*>",lambda m:m.group(0)+jump,annotated,count=1,flags=re.I)
+    else:
+        annotated=re.sub(r"</nav\s*>",lambda m:m.group(0)+jump,annotated,count=1,flags=re.I)
+    annotated=annotated.replace("</body>",jumpscript+"</body>",1)
     return annotated,records
 
 def render_archive(records,issues):
