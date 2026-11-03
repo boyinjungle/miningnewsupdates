@@ -1,0 +1,258 @@
+{
+  "schema_version": 1,
+  "companies": [
+    {
+      "id": "syrah-resources",
+      "name": "Syrah Resources",
+      "sector": "Mining & battery materials",
+      "headquarters_country": "Australia",
+      "project_ids": [
+        "syrah-vidalia",
+        "balama-graphite"
+      ],
+      "people_ids": [],
+      "article_urls": [],
+      "verification_url": "https://www.energy.gov/articles/doe-announces-first-advanced-technology-vehicles-manufacturing-loan-more-decade",
+      "last_verified": "2026-11-03",
+      "verification_note": "Project association verified from cited public disclosures. Headquarters jurisdiction and corporate affiliation should be periodically rechecked; project statuses are as-of source date."
+    },
+    {
+      "id": "walkabout-resources",
+      "name": "Walkabout Resources",
+      "sector": "Mining & mineral exploration",
+      "headquarters_country": "Australia",
+      "project_ids": [
+        "lindi-jumbo"
+      ],
+      "people_ids": [],
+      "article_urls": [],
+      "verification_url": "https://lindijumbo.co.tz/lindi-jumbo-graphite-project/",
+      "last_verified": "2026-11-03",
+      "verification_note": "Project association verified from cited public disclosures. Headquarters jurisdiction and corporate affiliation should be periodically rechecked; project statuses are as-of source date."
+    },
+    {
+      "id": "ardea-resources",
+      "name": "Ardea Resources",
+      "sector": "Mineral development",
+      "headquarters_country": "Australia",
+      "project_ids": [
+        "ardea-kalgoorlie-nickel"
+      ],
+      "people_ids": [],
+      "article_urls": [],
+      "verification_url": "https://www.minister.industry.gov.au/king/media/australia-us-critical-minerals-framework-investing-additional-projects",
+      "last_verified": "2026-11-03",
+      "verification_note": "Project association verified from cited public disclosures. Headquarters jurisdiction and corporate affiliation should be periodically rechecked; project statuses are as-of source date."
+    },
+    {
+      "id": "ioneer",
+      "name": "ioneer",
+      "sector": "Mineral development",
+      "headquarters_country": "Australia",
+      "project_ids": [
+        "rhyolite-ridge"
+      ],
+      "people_ids": [],
+      "article_urls": [],
+      "verification_url": "https://stage.energy.gov/edf/articles/doe-announces-996-million-loan-guarantee-ioneer-rhyolite-ridge-advance-domestic",
+      "last_verified": "2026-11-03",
+      "verification_note": "Project association verified from cited public disclosures. Headquarters jurisdiction and corporate affiliation should be periodically rechecked; project statuses are as-of source date."
+    },
+    {
+      "id": "lithium-americas",
+      "name": "Lithium Americas",
+      "sector": "Lithium development",
+      "headquarters_country": "Canada",
+      "project_ids": [
+        "thacker-pass"
+      ],
+      "people_ids": [],
+      "article_urls": [],
+      "verification_url": "https://www.energy.gov/cmm/articles/winter-2025-quarterly-newsletter-releases",
+      "last_verified": "2026-11-03",
+      "verification_note": "Project association verified from cited public disclosures. Headquarters jurisdiction and corporate affiliation should be periodically rechecked; project statuses are as-of source date."
+    },
+    {
+      "id": "novonix",
+      "name": "NOVONIX",
+      "sector": "Battery materials",
+      "headquarters_country": "Australia",
+      "project_ids": [
+        "novonix-kathari"
+      ],
+      "people_ids": [],
+      "article_urls": [],
+      "verification_url": "https://www.energy.gov/edf/articles/lpo-announces-conditional-commitment-novonix-boost-synthetic-graphite-manufacturing",
+      "last_verified": "2026-11-03",
+      "verification_note": "Project association verified from cited public disclosures. Headquarters jurisdiction and corporate affiliation should be periodically rechecked; project statuses are as-of source date."
+    },
+    {
+      "id": "redwood-materials",
+      "name": "Redwood Materials",
+      "sector": "Battery recycling & materials",
+      "headquarters_country": "United States",
+      "project_ids": [
+        "redwood-nevada"
+      ],
+      "people_ids": [],
+      "article_urls": [],
+      "verification_url": "https://stage.energy.gov/edf/articles/lpo-offers-conditional-commitment-redwood-materials-produce-critical-electric-vehicle",
+      "last_verified": "2026-11-03",
+      "verification_note": "Project association verified from cited public disclosures. Headquarters jurisdiction and corporate affiliation should be periodically rechecked; project statuses are as-of source date."
+    },
+    {
+      "id": "nouveau-monde-graphite",
+      "name": "Nouveau Monde Graphite",
+      "sector": "Graphite mining & battery materials",
+      "headquarters_country": "Canada",
+      "project_ids": [
+        "nm-matawinie"
+      ],
+      "people_ids": [],
+      "article_urls": [],
+      "verification_url": "https://publications.gc.ca/collections/collection_2026/fin/F1-21-2026-eng.pdf",
+      "last_verified": "2026-11-03",
+      "verification_note": "Project association verified from cited public disclosures. Headquarters jurisdiction and corporate affiliation should be periodically rechecked; project statuses are as-of source date."
+    },
+    {
+      "id": "rio-tinto-fer-et-titane",
+      "name": "Rio Tinto Fer et Titane",
+      "sector": "Minerals processing",
+      "headquarters_country": "Canada",
+      "project_ids": [
+        "rio-tinto-scandium"
+      ],
+      "people_ids": [],
+      "article_urls": [],
+      "verification_url": "https://publications.gc.ca/collections/collection_2026/fin/F1-21-2026-eng.pdf",
+      "last_verified": "2026-11-03",
+      "verification_note": "Project association verified from cited public disclosures. Headquarters jurisdiction and corporate affiliation should be periodically rechecked; project statuses are as-of source date."
+    },
+    {
+      "id": "focus-graphite",
+      "name": "Focus Graphite",
+      "sector": "Graphite exploration & development",
+      "headquarters_country": "Canada",
+      "project_ids": [
+        "focus-graphite-quebec"
+      ],
+      "people_ids": [],
+      "article_urls": [],
+      "verification_url": "https://publications.gc.ca/collections/collection_2026/fin/F1-21-2026-eng.pdf",
+      "last_verified": "2026-11-03",
+      "verification_note": "Project association verified from cited public disclosures. Headquarters jurisdiction and corporate affiliation should be periodically rechecked; project statuses are as-of source date."
+    },
+    {
+      "id": "frontier-lithium",
+      "name": "Frontier Lithium",
+      "sector": "Lithium development & processing",
+      "headquarters_country": "Canada",
+      "project_ids": [
+        "frontier-lithium-thunder-bay"
+      ],
+      "people_ids": [],
+      "article_urls": [],
+      "verification_url": "https://publications.gc.ca/collections/collection_2026/fin/F1-21-2026-eng.pdf",
+      "last_verified": "2026-11-03",
+      "verification_note": "Project association verified from cited public disclosures. Headquarters jurisdiction and corporate affiliation should be periodically rechecked; project statuses are as-of source date."
+    },
+    {
+      "id": "e3-lithium",
+      "name": "E3 Lithium",
+      "sector": "Lithium development",
+      "headquarters_country": "Canada",
+      "project_ids": [
+        "e3-clearwater"
+      ],
+      "people_ids": [],
+      "article_urls": [],
+      "verification_url": "https://publications.gc.ca/collections/collection_2026/fin/F1-21-2026-eng.pdf",
+      "last_verified": "2026-11-03",
+      "verification_note": "Project association verified from cited public disclosures. Headquarters jurisdiction and corporate affiliation should be periodically rechecked; project statuses are as-of source date."
+    },
+    {
+      "id": "cyclic-materials",
+      "name": "Cyclic Materials",
+      "sector": "Critical minerals recycling",
+      "headquarters_country": "Canada",
+      "project_ids": [
+        "cyclic-kingston"
+      ],
+      "people_ids": [],
+      "article_urls": [],
+      "verification_url": "https://publications.gc.ca/collections/collection_2026/fin/F1-21-2026-eng.pdf",
+      "last_verified": "2026-11-03",
+      "verification_note": "Project association verified from cited public disclosures. Headquarters jurisdiction and corporate affiliation should be periodically rechecked; project statuses are as-of source date."
+    },
+    {
+      "id": "defense-metals",
+      "name": "Defense Metals",
+      "sector": "Rare earth development",
+      "headquarters_country": "Canada",
+      "project_ids": [
+        "wicheeda-ree"
+      ],
+      "people_ids": [],
+      "article_urls": [],
+      "verification_url": "https://www.canada.ca/en/campaign/critical-minerals-in-canada/federal-support-for-critical-mineral-projects-and-value-chains/first-and-last-mile-fund.html",
+      "last_verified": "2026-11-03",
+      "verification_note": "Project association verified from cited public disclosures. Headquarters jurisdiction and corporate affiliation should be periodically rechecked; project statuses are as-of source date."
+    },
+    {
+      "id": "ecograf",
+      "name": "EcoGraf",
+      "sector": "Graphite & battery materials",
+      "headquarters_country": "Australia",
+      "project_ids": [
+        "ecograf-tanzania-graphite"
+      ],
+      "people_ids": [],
+      "article_urls": [],
+      "verification_url": "https://www.eib.org/en/press/all/2026-050-eib-global-backs-sustainable-critical-raw-material-projects-in-africa",
+      "last_verified": "2026-11-03",
+      "verification_note": "Project association verified from cited public disclosures. Headquarters jurisdiction and corporate affiliation should be periodically rechecked; project statuses are as-of source date."
+    },
+    {
+      "id": "andrada-mining",
+      "name": "Andrada Mining",
+      "sector": "Mineral exploration & processing",
+      "headquarters_country": "Namibia",
+      "project_ids": [
+        "andrada-namibia-lithium"
+      ],
+      "people_ids": [],
+      "article_urls": [],
+      "verification_url": "https://www.eib.org/en/press/all/2026-050-eib-global-backs-sustainable-critical-raw-material-projects-in-africa",
+      "last_verified": "2026-11-03",
+      "verification_note": "Project association verified from cited public disclosures. Headquarters jurisdiction and corporate affiliation should be periodically rechecked; project statuses are as-of source date."
+    },
+    {
+      "id": "aurubis",
+      "name": "Aurubis",
+      "sector": "Metals processing & recycling",
+      "headquarters_country": "Germany",
+      "project_ids": [
+        "aurubis-europe-copper"
+      ],
+      "people_ids": [],
+      "article_urls": [],
+      "verification_url": "https://www.eib.org/en/press/all/2025-333-aurubis-secures-eur-200-million-from-eib-to-drive-recycling-and-copper-production",
+      "last_verified": "2026-11-03",
+      "verification_note": "Project association verified from cited public disclosures. Headquarters jurisdiction and corporate affiliation should be periodically rechecked; project statuses are as-of source date."
+    },
+    {
+      "id": "pure-battery-technologies",
+      "name": "Pure Battery Technologies",
+      "sector": "Battery material processing",
+      "headquarters_country": "Germany",
+      "project_ids": [
+        "pbt-hagen-pcam"
+      ],
+      "people_ids": [],
+      "article_urls": [],
+      "verification_url": "https://www.eib.org/en/press/all/2022-516-investeu-eib-invests-in-pbt-s-eco-friendly-battery-material-production-in-germany",
+      "last_verified": "2026-11-03",
+      "verification_note": "Project association verified from cited public disclosures. Headquarters jurisdiction and corporate affiliation should be periodically rechecked; project statuses are as-of source date."
+    }
+  ]
+}
