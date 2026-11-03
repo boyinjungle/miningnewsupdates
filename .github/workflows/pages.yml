@@ -9,6 +9,7 @@ on:
       - "newspaper/**"
       - "scripts/build.py"
       - "scripts/archive_search.py"
+      - "scripts/validate_publish.py"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 permissions:
@@ -29,8 +30,10 @@ jobs:
       - uses: actions/configure-pages@v5
         with:
           enablement: true
-      - name: Build source directory
+      - name: Build public site and article archive
         run: python3 scripts/build.py
+      - name: Validate publishing output and create RSS / sitemap
+        run: python3 scripts/validate_publish.py
       - uses: actions/upload-pages-artifact@v4
         with:
           path: _site
