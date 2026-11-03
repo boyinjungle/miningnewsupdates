@@ -107,10 +107,34 @@ def main():
         for mention in person["mentions"]:
             if not valid_url(mention.get("source_url", "")):
                 fail(f"People news source URL is invalid: {person.get('name')}")
+    # Require functional project/plant and funding directories.
+    projects_page = SITE / "projects/index.html"
+    funding_page = SITE / "funding/index.html"
+    if not projects_page.is_file() or not funding_page.is_file():
+        fail("Project and Funding Directory pages not generated")
+    projects_reg = read_json(SITE / "projects/register.json")
+    funding_reg = read_json(SITE / "funding/register.json")
+    if projects_reg.get("schema_version") != 1 or funding_reg.get("schema_version") != 1:
+        fail("Invalid project/funding manifest version")
+    projs = projects_reg.get("projects",[])
+    trans = funding_reg.get("funding",[])
+    ids = {p["id"] for p in projs}
+    if len(ids) != len(projs):
+        fail("Duplicate project IDs")
+    txids = [t["id"] for t in trans]
+    if len(set(txids)) != len(txids):
+        fail("Duplicate funding transaction IDs")
+    for t in trans:
+        if t["project_id"] not in ids:
+            fail("Funding is not linked to an existing project")
+        if t["status"]=="Disbursed / received" and not t.get("disbursement_verified"):
+            fail("Disbursed funding record lacks evidence flag")
+        if not valid_url(t["source_url"]):
+            fail("Funding transaction missing source URL")
     # Sitemap is for publication pages, not every anchor fragment.
     ns="http://www.sitemaps.org/schemas/sitemap/0.9"
     sitemap = ET.Element("urlset", xmlns=ns)
-    pages = [("",None),("newspaper/",None),("people/",None)] + [
+    pages = [("",None),("newspaper/",None),("people/",None),("projects/",None),("funding/",None)] + [
         ("newspaper/"+i["date"]+".html",i["date"])
         for i in sorted(issues,key=lambda i:i["date"],reverse=True)
     ]
