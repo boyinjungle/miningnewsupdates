@@ -13,6 +13,7 @@ OUT = ROOT / "_site" / "newspaper"
 TOPICS = [
     ("gold", "Gold & Markets", "◆", "Gold prices, discoveries and Jomu"),
     ("graphite", "Graphite & Markets", "◈", "Natural and synthetic graphite"),
+    ("critical-minerals", "Critical Minerals", "◇", "Exploration, supply chains, policy and markets"),
     ("exploration", "Exploration & Geology", "⌁", "Drilling, resources and technology"),
     ("finance", "Finance & Investment", "▤", "Funding, investors and ownership"),
     ("offtake", "Offtake & Downstream", "▥", "Buyers, anodes, steel and refractories"),
@@ -28,6 +29,7 @@ NAMES = {a:b for a,b,_,_ in TOPICS}
 PATTERNS = {
   "gold": r"\bgold\b|\bbullion\b|\bjomu\b|\bau\b",
   "graphite": r"\bgraphite\b|\bflake\b|\bspheri[sz]|\bsynthetic anode\b",
+  "critical-minerals": r"\bcritical mineral[s]?\b|\bstrategic mineral[s]?\b|\brare earth[s]?\b|\bREEs?\b|\b(?:lithium|nickel|cobalt|copper|manganese|tungsten|vanadium|tantalum|niobium|gallium|germanium|indium|tellurium|antimony|beryllium|titanium|zirconium|hafnium|scandium|platinum group|PGEs?|potash|phosphate)\b|\b(?:neodymium|praseodymium|dysprosium|terbium|NdPr)\b",
   "exploration": r"\bexplor|\bgeolog|\bdrill|\bmineralis|\bresource\b|\breserve\b|\bassay|\bgeophys|\bmetallurg|\bJORC\b|\bNI 43-101\b",
   "finance": r"\binvest|\bfinanc|\bfund|\bequity\b|\bdebt\b|\bIPO\b|\bcapital\b|\bJV\b|\bjoint venture\b|\bM&A\b",
   "offtake": r"\bofftake\b|\bbuyer\b|\bdownstream\b|\banode\b|\bsteel\b|\brefractor|\bbattery\b|\bpurif|\bprocessing\b|\bqualification\b",
@@ -59,12 +61,12 @@ def classify(title, body, region, attrs):
         cats = list(dict.fromkeys(cats))
         # Keep category assignment broad but meaningful, avoiding generic project hits.
         if len(cats) > 5:
-            cats = [x for x in cats if x not in ("competitors", "opportunities")][:5] or cats[:5]
+            cats = ([x for x in cats if x in ("critical-minerals", "graphite", "gold")] + [x for x in cats if x not in ("critical-minerals", "graphite", "gold", "competitors", "opportunities")])[:6] or cats[:5]
         if not cats: cats = ["exploration"]
     tags = [s.strip() for s in attr(attrs,"data-tags").split(",") if s.strip()]
     if not tags:
         tags = [NAMES[k] for k in cats[:4]]
-        for tag,pat in [("Tanga",r"\btanga\b"),("Jomu",r"\bjomu\b"),("Tanzania",r"\btanzania\b"),("India",r"\bindia\b"),("Natural Flake",r"\bnatural flake\b"),("Offtake",r"\bofftake\b"),("Lithium-ion Batteries",r"\bbatter(y|ies)\b")]:
+        for tag,pat in [("Tanga",r"\btanga\b"),("Jomu",r"\bjomu\b"),("Tanzania",r"\btanzania\b"),("India",r"\bindia\b"),("Natural Flake",r"\bnatural flake\b"),("Offtake",r"\bofftake\b"),("Lithium-ion Batteries",r"\bbatter(y|ies)\b"),("Rare Earths",r"\brare earth|\bREEs?\b"),("Lithium",r"\blithium\b"),("Nickel",r"\bnickel\b"),("Copper",r"\bcopper\b"),("Cobalt",r"\bcobalt\b"),("Manganese",r"\bmanganese\b"),("Critical Minerals",r"\bcritical minerals?\b")]:
             if re.search(pat,(title+" "+body),re.I) and tag not in tags: tags.append(tag)
     return cats,tags[:7]
 def pill_markup(tags):
