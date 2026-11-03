@@ -92,3 +92,5 @@ print(f"Published newspaper archive with {len(valid)} editions.")
 # Build tagged article archive and annotate edition pages with clickable topic tags.
 import subprocess, sys
 subprocess.run([sys.executable, str(root / "scripts/archive_search.py")], check=True)
+# Publish source-linked people directory after article IDs exist.
+subprocess.run([sys.executable, str(root / "scripts/people_directory.py")], check=True)
