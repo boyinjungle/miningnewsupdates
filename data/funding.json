@@ -44,12 +44,12 @@
       "instrument": "Letter of support/interest",
       "status": "Indicative / non-binding",
       "amount": 500000000,
-      "currency": "USD",
-      "announced_date": null,
-      "source_url": "https://www.minister.industry.gov.au/king/media/australia-us-critical-minerals-framework-investing-additional-projects",
-      "context": "Australian government reported a letter of support/interest of up to US$500 million for Ardea's Kalgoorlie Nickel Project. Confirm letter date in original release; event date is approximate and not used as evidence of loan closing.",
+      "currency": "AUD",
+      "announced_date": "2026-02-05",
+      "source_url": "https://www.marketindex.com.au/asx/arl/announcements/july-2026-noosa-mining-conference-presentation-6A1334812",
+      "context": "Ardea's July 2026 conference presentation confirms a conditional, non-binding EFA letter of support for up to A$500 million (originally announced 5 February 2026).",
       "disbursement_verified": false,
-      "disbursement_note": "Indicative support only; not funding received.",
+      "disbursement_note": "Potential project financing only; no signed loan or drawdown verified.",
       "last_verified": "2026-11-03"
     },
     {
@@ -60,13 +60,13 @@
       "recipient": "Ardea Resources Limited / Kalgoorlie Nickel Project",
       "instrument": "Letter of support/interest",
       "status": "Indicative / non-binding",
-      "amount": 500000000,
+      "amount": 350000000,
       "currency": "USD",
-      "announced_date": null,
-      "source_url": "https://www.minister.industry.gov.au/king/media/australia-us-critical-minerals-framework-investing-additional-projects",
-      "context": "Australian government reported a separate EXIM letter of support/interest of up to US$500 million, not a loan commitment. Exact transaction date requires further confirmation.",
+      "announced_date": "2026-02-05",
+      "source_url": "https://www.marketindex.com.au/asx/arl/announcements/july-2026-noosa-mining-conference-presentation-6A1334812",
+      "context": "Ardea's July 2026 presentation confirms a U.S. EXIM letter of interest for potential financing of up to US$350 million (originally announced 5 February 2026).",
       "disbursement_verified": false,
-      "disbursement_note": "Do not sum as funded project capital or cash received.",
+      "disbursement_note": "Potential project financing only; do not add to the A$500m letter without FX conversion, and do not count as disbursed.",
       "last_verified": "2026-11-03"
     }
   ]
