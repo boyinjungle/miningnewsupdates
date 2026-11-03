@@ -222,5 +222,19 @@
     "Last Used in Newspaper": "",
     "Status": "Active",
     "Notes": "Initial curated seed; confirm specific subpage before citation"
+  },
+  {
+    "Source Name": "Reuters Commodities and Mining News",
+    "Website URL": "https://www.reuters.com/",
+    "Primary Category": "Mining News",
+    "Geographic Focus": "Global",
+    "Source Type": "News agency / secondary reporting",
+    "Sakariya Priority": "High",
+    "What to Monitor": "Gold market movements, mining investments and policy developments",
+    "Last Reviewed": "2026-11-03",
+    "Last Useful Article": "https://www.reuters.com/world/india/gold-rises-softer-oil-markets-parse-fed-signals-2026-11-02/",
+    "Last Used in Newspaper": "2026-11-03",
+    "Status": "Active",
+    "Notes": "Specific 2 November 2026 market report checked; verify individual stories and dates."
   }
 ]
