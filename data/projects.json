@@ -59,6 +59,243 @@
       "status_as_of": "2026 announcement",
       "source_note": "Major Project Status does not itself confirm funding or operating production.",
       "news_articles": []
+    },
+    {
+      "id": "rhyolite-ridge",
+      "name": "Rhyolite Ridge Lithium-Boron Project",
+      "type": "Lithium-boron mine and processing plant",
+      "country": "United States",
+      "region": "North America",
+      "location": "Esmeralda County, Nevada",
+      "company": "Ioneer Rhyolite Ridge LLC / ioneer",
+      "commodities": [
+        "Lithium",
+        "Boron"
+      ],
+      "stage": "Development / financing",
+      "summary": "Integrated proposed lithium-boron resource and on-site lithium carbonate processing project; DOE financing close announced January 2025.",
+      "source_url": "https://stage.energy.gov/edf/articles/doe-announces-996-million-loan-guarantee-ioneer-rhyolite-ridge-advance-domestic",
+      "last_verified": "2026-11-03",
+      "status_as_of": "2025-01-17",
+      "source_note": "Historical public disclosure. Do not infer current construction progress or funding disbursement.",
+      "news_articles": []
+    },
+    {
+      "id": "thacker-pass",
+      "name": "Thacker Pass Lithium Project",
+      "type": "Lithium mine and processing plant",
+      "country": "United States",
+      "region": "North America",
+      "location": "Humboldt County, Nevada",
+      "company": "Lithium Americas",
+      "commodities": [
+        "Lithium"
+      ],
+      "stage": "Development / financing",
+      "summary": "Lithium mine and battery-grade lithium carbonate processing development in Nevada. DOE announced financial close for a project loan.",
+      "source_url": "https://www.energy.gov/cmm/articles/winter-2025-quarterly-newsletter-releases",
+      "last_verified": "2026-11-03",
+      "status_as_of": "2024-10-28",
+      "source_note": "Historical public disclosure. Do not infer current construction progress or funding disbursement.",
+      "news_articles": []
+    },
+    {
+      "id": "novonix-kathari",
+      "name": "NOVONIX Project Kathari",
+      "type": "Synthetic graphite anode plant",
+      "country": "United States",
+      "region": "North America",
+      "location": "Chattanooga, Tennessee",
+      "company": "NOVONIX Limited",
+      "commodities": [
+        "Synthetic Graphite",
+        "Battery Anode"
+      ],
+      "stage": "Proposed / conditional financing",
+      "summary": "Proposed U.S. synthetic-graphite anode facility that received a conditional federal financing commitment in 2024.",
+      "source_url": "https://www.energy.gov/edf/articles/lpo-announces-conditional-commitment-novonix-boost-synthetic-graphite-manufacturing",
+      "last_verified": "2026-11-03",
+      "status_as_of": "2024-12-16",
+      "source_note": "Historical public disclosure. Do not infer current construction progress or funding disbursement.",
+      "news_articles": []
+    },
+    {
+      "id": "redwood-nevada",
+      "name": "Redwood Materials Nevada Battery Materials Campus",
+      "type": "Battery recycling and materials plant",
+      "country": "United States",
+      "region": "North America",
+      "location": "McCarran, Nevada",
+      "company": "Redwood Materials",
+      "commodities": [
+        "Lithium",
+        "Nickel",
+        "Cobalt",
+        "Battery Anode",
+        "Battery Recycling"
+      ],
+      "stage": "Development / conditional financing",
+      "summary": "Battery recycling and critical-materials components campus; DOE announced a conditional financing commitment in 2023.",
+      "source_url": "https://stage.energy.gov/edf/articles/lpo-offers-conditional-commitment-redwood-materials-produce-critical-electric-vehicle",
+      "last_verified": "2026-11-03",
+      "status_as_of": "2023-02-09",
+      "source_note": "Historical public disclosure. Do not infer current construction progress or funding disbursement.",
+      "news_articles": []
+    },
+    {
+      "id": "nm-matawinie",
+      "name": "Matawinie Graphite Mine",
+      "type": "Graphite mine",
+      "country": "Canada",
+      "region": "North America",
+      "location": "Saint-Michel-des-Saints, Quebec",
+      "company": "Nouveau Monde Graphite",
+      "commodities": [
+        "Natural Graphite"
+      ],
+      "stage": "Development / financing announced",
+      "summary": "Integrated graphite upstream mine development; Canadian finance update described federal debt and equity investment announcements in October 2025.",
+      "source_url": "https://publications.gc.ca/collections/collection_2026/fin/F1-21-2026-eng.pdf",
+      "last_verified": "2026-11-03",
+      "status_as_of": "2025-10-01",
+      "source_note": "Historical public disclosure. Do not infer current construction progress or funding disbursement.",
+      "news_articles": []
+    },
+    {
+      "id": "rio-tinto-scandium",
+      "name": "Sorel-Tracy Scandium Oxide Production",
+      "type": "Scandium processing plant",
+      "country": "Canada",
+      "region": "North America",
+      "location": "Sorel-Tracy, Quebec",
+      "company": "Rio Tinto Fer et Titane",
+      "commodities": [
+        "Scandium"
+      ],
+      "stage": "Commercial-scale production project",
+      "summary": "Scandium oxide production development; 2026 Canadian fiscal update disclosed an equity-like royalty financial structure.",
+      "source_url": "https://publications.gc.ca/collections/collection_2026/fin/F1-21-2026-eng.pdf",
+      "last_verified": "2026-11-03",
+      "status_as_of": "2025-10-01",
+      "source_note": "Historical public disclosure. Do not infer current construction progress or funding disbursement.",
+      "news_articles": []
+    },
+    {
+      "id": "focus-graphite-quebec",
+      "name": "Focus Graphite Defence and Advanced Manufacturing Development",
+      "type": "Graphite project / advanced materials",
+      "country": "Canada",
+      "region": "North America",
+      "location": "Baie-Comeau, Quebec",
+      "company": "Focus Graphite",
+      "commodities": [
+        "Graphite"
+      ],
+      "stage": "Development / public funding highlighted",
+      "summary": "Graphite supply-chain project identified in the Canadian federal 2026 economic update; precise project investment instrument not stated in summary.",
+      "source_url": "https://publications.gc.ca/collections/collection_2026/fin/F1-21-2026-eng.pdf",
+      "last_verified": "2026-11-03",
+      "status_as_of": "2025-10-01",
+      "source_note": "Historical public disclosure. Do not infer current construction progress or funding disbursement.",
+      "news_articles": []
+    },
+    {
+      "id": "frontier-lithium-thunder-bay",
+      "name": "Frontier Lithium Processing Facility",
+      "type": "Lithium processing plant",
+      "country": "Canada",
+      "region": "North America",
+      "location": "Thunder Bay, Ontario",
+      "company": "Frontier Lithium",
+      "commodities": [
+        "Lithium"
+      ],
+      "stage": "Processing development / funding highlighted",
+      "summary": "Lithium processing facility mentioned in Canada's 2026 fiscal update with a disclosed federal contribution.",
+      "source_url": "https://publications.gc.ca/collections/collection_2026/fin/F1-21-2026-eng.pdf",
+      "last_verified": "2026-11-03",
+      "status_as_of": "2026-03-01",
+      "source_note": "Historical public disclosure. Do not infer current construction progress or funding disbursement.",
+      "news_articles": []
+    },
+    {
+      "id": "e3-clearwater",
+      "name": "E3 Lithium Clearwater Project",
+      "type": "Lithium demonstration and refining project",
+      "country": "Canada",
+      "region": "North America",
+      "location": "Olds, Alberta",
+      "company": "E3 Lithium",
+      "commodities": [
+        "Lithium"
+      ],
+      "stage": "Demonstration development / funding highlighted",
+      "summary": "Lithium refining demonstration program in Alberta with federal funding highlighted during PDAC 2026.",
+      "source_url": "https://publications.gc.ca/collections/collection_2026/fin/F1-21-2026-eng.pdf",
+      "last_verified": "2026-11-03",
+      "status_as_of": "2026-03-01",
+      "source_note": "Historical public disclosure. Do not infer current construction progress or funding disbursement.",
+      "news_articles": []
+    },
+    {
+      "id": "cyclic-kingston",
+      "name": "Cyclic Materials Rare-Earth Recycling Facility",
+      "type": "Rare earth recycling plant",
+      "country": "Canada",
+      "region": "North America",
+      "location": "Kingston, Ontario",
+      "company": "Cyclic Materials",
+      "commodities": [
+        "Rare Earths",
+        "Recycling"
+      ],
+      "stage": "Recycling development / funding highlighted",
+      "summary": "Ontario rare-earth materials recycling project identified with equity financing and further federal support in Canada's April 2026 fiscal update.",
+      "source_url": "https://publications.gc.ca/collections/collection_2026/fin/F1-21-2026-eng.pdf",
+      "last_verified": "2026-11-03",
+      "status_as_of": "2026-03-01",
+      "source_note": "Historical public disclosure. Do not infer current construction progress or funding disbursement.",
+      "news_articles": []
+    },
+    {
+      "id": "wicheeda-ree",
+      "name": "Wicheeda Rare Earth Project",
+      "type": "Rare-earth mining project",
+      "country": "Canada",
+      "region": "North America",
+      "location": "Bear Lake, British Columbia",
+      "company": "Defense Metals Corp",
+      "commodities": [
+        "Rare Earths"
+      ],
+      "stage": "Preconstruction / federal contribution announced",
+      "summary": "Rare-earth project included in Canada's First and Last Mile Fund/CMIF funded-project roster.",
+      "source_url": "https://www.canada.ca/en/campaign/critical-minerals-in-canada/federal-support-for-critical-mineral-projects-and-value-chains/first-and-last-mile-fund.html",
+      "last_verified": "2026-11-03",
+      "status_as_of": "2026-06-24",
+      "source_note": "Historical public disclosure. Do not infer current construction progress or funding disbursement.",
+      "news_articles": []
+    },
+    {
+      "id": "anyox-hydro",
+      "name": "Anyox Hydro Redevelopment Project",
+      "type": "Mining-enabling clean energy infrastructure",
+      "country": "Canada",
+      "region": "North America",
+      "location": "Anyox, British Columbia",
+      "company": "Boney Creek Development Ltd",
+      "commodities": [
+        "Copper",
+        "Molybdenum",
+        "Zinc"
+      ],
+      "stage": "Preconstruction / federal contribution announced",
+      "summary": "Hydroelectric infrastructure redevelopment to support critical mineral production included in Canada's federal project list.",
+      "source_url": "https://www.canada.ca/en/campaign/critical-minerals-in-canada/federal-support-for-critical-mineral-projects-and-value-chains/first-and-last-mile-fund.html",
+      "last_verified": "2026-11-03",
+      "status_as_of": "2026-06-24",
+      "source_note": "Historical public disclosure. Do not infer current construction progress or funding disbursement.",
+      "news_articles": []
     }
   ]
 }
