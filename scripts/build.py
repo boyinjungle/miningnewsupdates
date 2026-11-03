@@ -94,3 +94,5 @@ import subprocess, sys
 subprocess.run([sys.executable, str(root / "scripts/archive_search.py")], check=True)
 # Publish source-linked people directory after article IDs exist.
 subprocess.run([sys.executable, str(root / "scripts/people_directory.py")], check=True)
+# Build publicly sourced project and funding directories as linked research views.
+subprocess.run([sys.executable, str(root / "scripts/project_funding.py")], check=True)
