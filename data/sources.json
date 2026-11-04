@@ -236,5 +236,19 @@
     "Last Used in Newspaper": "2026-11-03",
     "Status": "Active",
     "Notes": "Specific 2 November 2026 market report checked; verify individual stories and dates."
+  },
+  {
+    "Source Name": "World Gold Council — Gold Demand Trends",
+    "Website URL": "https://www.gold.org/goldhub/research/gold-demand-trends/gold-demand-trends-q3-2026",
+    "Primary Category": "Gold Market Data",
+    "Geographic Focus": "Global / India",
+    "Source Type": "Industry research / primary publication",
+    "Sakariya Priority": "High",
+    "What to Monitor": "Quarterly gold demand, official-sector buying, ETF flows, supply and methodology",
+    "Last Reviewed": "2026-11-04",
+    "Last Useful Article": "https://www.gold.org/goldhub/research/gold-demand-trends/gold-demand-trends-q3-2026",
+    "Last Used in Newspaper": "2026-11-04",
+    "Status": "Active",
+    "Notes": "Verified 3 November 2026 Q3 report; date quarterly observations separately from publication date"
   }
 ]
