@@ -250,5 +250,61 @@
     "Last Used in Newspaper": "2026-11-04",
     "Status": "Active",
     "Notes": "Verified 3 November 2026 Q3 report; date quarterly observations separately from publication date"
+  },
+  {
+    "Source Name": "DD India",
+    "Website URL": "https://ddindia.co.in/",
+    "Primary Category": "Policy & Regulation",
+    "Geographic Focus": "India",
+    "Source Type": "Government broadcaster / secondary",
+    "Sakariya Priority": "High",
+    "What to Monitor": "India's official policy coverage and cabinet announcements",
+    "Last Reviewed": "2026-11-05",
+    "Last Useful Article": "https://ddindia.co.in/2026/11/cabinet-approves-rs-2814-crore-scheme-to-boost-domestic-lithium-nickel-processing/",
+    "Last Used in Newspaper": "2026-11-05",
+    "Status": "Active",
+    "Notes": "Dated article checked on 5 Nov 2026; secondary source, confirm primary disclosures for investment decisions"
+  },
+  {
+    "Source Name": "StockTitan Company Release Feed",
+    "Website URL": "https://www.stocktitan.net/",
+    "Primary Category": "Junior Mining & Exploration",
+    "Geographic Focus": "Global",
+    "Source Type": "Company release aggregation / secondary",
+    "Sakariya Priority": "High",
+    "What to Monitor": "Time-stamped public junior mining announcements and release text",
+    "Last Reviewed": "2026-11-05",
+    "Last Useful Article": "https://www.stocktitan.net/news/GRAPF/first-canadian-graphite-inc-closes-flow-through-nil3psa8qoes.html",
+    "Last Used in Newspaper": "2026-11-05",
+    "Status": "Active",
+    "Notes": "Dated article checked on 5 Nov 2026; secondary source, confirm primary disclosures for investment decisions"
+  },
+  {
+    "Source Name": "TanzaniaInvest",
+    "Website URL": "https://www.tanzaniainvest.com/",
+    "Primary Category": "Tanzania Risk & Infrastructure",
+    "Geographic Focus": "Tanzania",
+    "Source Type": "Specialist investment news / secondary",
+    "Sakariya Priority": "High",
+    "What to Monitor": "Investment agency reports and mining conferences; verify underlying agency statements",
+    "Last Reviewed": "2026-11-05",
+    "Last Useful Article": "https://www.tanzaniainvest.com/economy/tiseza-investment-projects-2021-2026",
+    "Last Used in Newspaper": "2026-11-05",
+    "Status": "Active",
+    "Notes": "Dated article checked on 5 Nov 2026; secondary source, confirm primary disclosures for investment decisions"
+  },
+  {
+    "Source Name": "SP Angel Market View via Share Talk",
+    "Website URL": "https://www.share-talk.com/",
+    "Primary Category": "Gold & Critical Minerals Markets",
+    "Geographic Focus": "Global",
+    "Source Type": "Broker commentary / secondary",
+    "Sakariya Priority": "High",
+    "What to Monitor": "Dated mining market views and exploration company watch; verify primary releases",
+    "Last Reviewed": "2026-11-05",
+    "Last Useful Article": "https://www.share-talk.com/sp-angel-todays-market-view-wednesday-4th-november-2026/",
+    "Last Used in Newspaper": "2026-11-05",
+    "Status": "Active",
+    "Notes": "Dated article checked on 5 Nov 2026; secondary source, confirm primary disclosures for investment decisions"
   }
 ]
