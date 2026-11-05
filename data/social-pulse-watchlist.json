@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "title": "Sakariya Global Mining & Critical Minerals Social Pulse",
+  "window_hours": 72,
+  "categories": [
+    {
+      "slug": "graphite-anodes",
+      "name": "Graphite & Battery Anodes",
+      "terms": [
+        "natural flake graphite",
+        "synthetic graphite",
+        "spherical purified graphite",
+        "anode active material",
+        "graphite offtake",
+        "graphite export restrictions"
+      ]
+    },
+    {
+      "slug": "gold",
+      "name": "Gold, Gold Juniors & Exploration",
+      "terms": [
+        "gold exploration drilling",
+        "gold junior miners",
+        "gold market sentiment",
+        "gold discoveries",
+        "gold financing",
+        "gold mining Africa"
+      ]
+    },
+    {
+      "slug": "critical-minerals",
+      "name": "Critical Minerals & Rare Earths",
+      "terms": [
+        "critical minerals exploration",
+        "rare earth magnets",
+        "NdPr",
+        "lithium supply chain",
+        "copper mining",
+        "nickel cobalt manganese",
+        "tungsten antimony"
+      ]
+    },
+    {
+      "slug": "batteries",
+      "name": "Batteries, EVs & Energy Storage",
+      "terms": [
+        "battery materials supply chain",
+        "LFP battery",
+        "sodium ion battery",
+        "battery anode",
+        "battery recycling",
+        "battery plant investment"
+      ]
+    },
+    {
+      "slug": "mining-investment",
+      "name": "Junior Miners, Funding & Deals",
+      "terms": [
+        "mining project financing",
+        "junior mining IPO",
+        "mineral project farm in",
+        "mining exploration joint venture",
+        "strategic offtake financing"
+      ]
+    },
+    {
+      "slug": "processing",
+      "name": "Processing, Refining & Downstream",
+      "terms": [
+        "critical mineral refinery",
+        "graphite purification",
+        "cathode active material",
+        "battery recycling process",
+        "ore beneficiation",
+        "rare earth separation"
+      ]
+    },
+    {
+      "slug": "geology-technology",
+      "name": "Exploration Technology & Geoscience",
+      "terms": [
+        "mineral exploration geophysics",
+        "exploration drilling technology",
+        "AI mineral exploration",
+        "geological survey discoveries",
+        "orebody modelling"
+      ]
+    },
+    {
+      "slug": "policy",
+      "name": "Policy, Trade & Geopolitics",
+      "terms": [
+        "critical minerals export controls",
+        "mineral export restrictions",
+        "mineral auction",
+        "local beneficiation mandates",
+        "critical minerals security"
+      ]
+    },
+    {
+      "slug": "africa-world",
+      "name": "Africa & Global Mining Conversations",
+      "terms": [
+        "Tanzania mining",
+        "Zambia copper exploration",
+        "DRC cobalt",
+        "Namibia lithium",
+        "Mozambique graphite",
+        "West Africa gold",
+        "global mining opportunities"
+      ]
+    }
+  ],
+  "discovery": [
+    {
+      "source": "LinkedIn public posts and company/association pages",
+      "methods": [
+        "direct known publisher/company post URLs",
+        "public-facing company update pages",
+        "site-specific search with UTC date verification"
+      ],
+      "access_notes": "Public indexing is incomplete. Do not infer absence of posts from empty search results."
+    },
+    {
+      "source": "X public posts",
+      "methods": [
+        "open direct public posts from known industry participants",
+        "public account timelines where accessible",
+        "external search for discoverable post URLs"
+      ],
+      "access_notes": "Search and timelines may require login or be incomplete; do not imply systematic coverage."
+    },
+    {
+      "source": "Reddit",
+      "methods": [
+        "sort relevant subreddit and keyword searches by New",
+        "inspect original post timestamp, substantive comment threads and permalink",
+        "recheck popular threads over 72 hours"
+      ],
+      "access_notes": "Search indexing and API access vary. Only cite directly readable discussions."
+    },
+    {
+      "source": "Bluesky",
+      "methods": [
+        "use publicly accessible post search with date filters where supported",
+        "verify original record timestamps and post URLs",
+        "inspect replies and follow-on discussion"
+      ],
+      "access_notes": "API and unauthenticated access can change; never assume queries succeeded without results."
+    },
+    {
+      "source": "Mastodon/Fediverse",
+      "methods": [
+        "public hashtag timelines on instances permitting public preview",
+        "industry account public posts"
+      ],
+      "access_notes": "Many instances restrict or disable public timeline access."
+    },
+    {
+      "source": "Industry communities and specialized forums",
+      "methods": [
+        "public mining and investment forums",
+        "public geological association discussions",
+        "community and sector newsletters with linked author posts"
+      ],
+      "access_notes": "Distinguish editorial reporting from user-generated conversation."
+    },
+    {
+      "source": "Company/exchange and association announcements",
+      "methods": [
+        "public company newsrooms and exchange filing announcements that link to social posts",
+        "conference livestreams, webinars and public videos/comments"
+      ],
+      "access_notes": "Use as lead discovery/context, not evidence that unlocated social conversations occurred."
+    }
+  ],
+  "article_fields": [
+    "topic",
+    "section",
+    "post_url",
+    "platform",
+    "published_at_utc",
+    "author_or_organization",
+    "post_type",
+    "discussion_summary",
+    "evidence_class",
+    "verification",
+    "regional_relevance",
+    "commercial_implications",
+    "is_new_or_materially_changed"
+  ],
+  "rules": [
+    "Cover rolling 72 hours, identify important new activity in most recent 24 hours, and avoid repeat coverage without a new discussion or evidence.",
+    "No fixed count and no invented posts, authors, timestamps, sentiment scores, engagement metrics or trends.",
+    "Use the original individual post/thread permalink wherever available and check timestamp.",
+    "One post is a signal, not proof of a trend; report multiple independent discussions for trends.",
+    "Clearly distinguish a public social post from a company announcement, commentary, promotional content, or a news repost.",
+    "Omit sections with no qualifying discussion or say 'No independently verifiable discussion found in sources checked' without implying none exists.",
+    "Include geographies beyond Tanzania, particularly Africa, North America, Europe, Australia and Asia.",
+    "Use the social topic slug on archive article blocks, with commodity-specific cross-tags."
+  ]
+}
