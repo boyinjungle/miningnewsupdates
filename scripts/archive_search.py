@@ -23,7 +23,7 @@ TOPICS = [
     ("competitors", "Projects & Competitors", "◉", "Junior miners and project milestones"),
     ("opportunities", "Deals & Geo Services", "↗", "Partnerships, tenders and contracts"),
     ("global-opportunities", "Global Mining Opportunities", "🌐", "Africa beyond Tanzania and opportunities worldwide"),
-    ("social", "Natural Graphite Social Pulse", "◌", "LinkedIn, X, Reddit and forums"),
+    ("social", "Mining & Critical Minerals Social Pulse", "💬", "Gold, graphite, batteries, critical minerals and public discussions"),
     ("events", "Conferences & Events", "▣", "Industry events and deadlines"),
 ]
 NAMES = {a:b for a,b,_,_ in TOPICS}
@@ -40,7 +40,7 @@ PATTERNS = {
   "competitors": r"\bcompetitor\b|\bjunior\b|\bproject\b|\boperator\b|\bdevelop|\bmilestone\b|\bplant\b|\bconstruction\b|\bcommission",
   "opportunities": r"\btender\b|\bprocure|\bcontract\b|\bpartner|\bfarm-in\b|\bservices\b|\bsurvey\b|\bdeal\b",
   "global-opportunities": r"\bglobal mining opportunit|\bmineral asset sale\b|\bfarm-in opportunit|\bprospecting licence auction\b|\bmineral block auction\b|\bexploration tender\b|\binternational mining tender\b",
-  "social": r"\bsocial pulse\b|\blinkedin\b|\breddit\b|\bforum\b|\bposted\b|\bsocial discussion\b",
+  "social": r"\bsocial pulse\b|\blinkedin\b|\breddit\b|\bforum\b|\bposted\b|\bsocial discussion\b|\bbluesky\b|\bmastodon\b|\bbsky\b|\bsocial media\b",
   "events": r"\bconference\b|\bexhibition\b|\bevent\b|\bregister|\bexhibitor\b|\bdeadline\b|\bTMIC\b",
 }
 def plain(fragment):
